@@ -28,7 +28,7 @@ describe Location do
     event2 = Event.new(:name => 'Event2', :day => Date.today+1)
     location = Location.new(:name => 'lala', events: [event1, event2])
     location.events.should include(event1)
+    location.should have(2).events
   end
-
 
 end

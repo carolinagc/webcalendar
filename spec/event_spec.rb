@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Event do
   before :each do
-    @event = Event.new(:name => "Printing the washing machine")
+    @event = Event.new(:name => "Printing the washing machine", :event_type => "Workshop", :day => Date.today)
   end
 
   it "should name be presente" do
@@ -10,7 +10,8 @@ describe Event do
   end
 
   it "is invalid without a name" do
-    @event.should_not be_valid
+    @event1= Event.new
+    @event1.should_not be_valid
   end
 
   it "should have a day" do
@@ -23,23 +24,13 @@ describe Event do
     @event.should be_present 
   end
   
-  it  'should be valid with event_type' do
-    @event.event_type = "Workshop"
-    @event.should be_present
+  it  'should have an event_type' do
+    @event.event_type.should be_present
   end
-  it "is invalid without a type" do
-    @event.should_not be_valid
+  it "is invalid without a event_type" do
+    @event1 = Event.new
+    @event1.should_not be_valid
   end
-
-  it 'should have a description' do
-    @event.description = "The retro washing machine is back"
-    @event.description.should be_present
-  end
-  
-  it "should have an organizer" do
-    
-  end
-
 
 end
 

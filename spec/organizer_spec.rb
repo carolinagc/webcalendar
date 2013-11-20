@@ -1,13 +1,17 @@
 require 'spec_helper'
 
 describe Organizer do
-  before :each do
-    @organizer = Organizer.new(:name => "OTS")
-  end
 
-  it "should name be presente" do
-    @organizer.name.should be_present
+  it "should name be present" do
+  @organizer = Organizer.new(:name => "OTS")  
+  @organizer.name.should be_present
   end
+  
+  it 'should be invalid if no name is present' do
+  @organizer = Organizer.new
+  @organizer.should_not be_valid
+
+  end  
 
 
 end
