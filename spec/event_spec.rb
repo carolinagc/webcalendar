@@ -1,30 +1,45 @@
-class Event 
-attr_accessor :name, :description, :start_time, :end_time
-  def initialize
-    @name = "Printing washing machines"
-    @description = ""
-    @start_time = Time.now
-    @end_time = Time.now + 1
+require 'spec_helper'
+
+describe Event do
+  before :each do
+    @event = Event.new(:name => "Printing the washing machine")
   end
+
+  it "should name be presente" do
+    @event.name.should be_present
+  end
+
+  it "is invalid without a name" do
+    @event.should_not be_valid
+  end
+
+  it "should have a day" do
+  @event.day = Date.today
+  @event.should be_present
+  end
+  
+  it 'should have a time' do 
+    @event.time = Time.now
+    @event.should be_present 
+  end
+  
+  it  'should be valid with event_type' do
+    @event.event_type = "Workshop"
+    @event.should be_present
+  end
+  it "is invalid without a type" do
+    @event.should_not be_valid
+  end
+
+  it 'should have a description' do
+    @event.description = "The retro washing machine is back"
+    @event.description.should be_present
+  end
+  
+  it "should have an organizer" do
+    
+  end
+
 
 end
 
-describe 'Event' do
-  before(:each) do
-    @event = Event.new
-  end
-  it "should initialize with default values" do
-    @event.name.should == "Printing washing machines"
-    @event.description.should == ""
-    @event.start_time = Time.now
-    @event.end_time = Time.now + 1
-  end
-
-  it "raises error when name empty" do
-    @event.name.should_not be_empty
-  end
-  it "should have a location"
-  it "should have a category"
-  it "should have a type"
-  it "should have an organizer"
-end
