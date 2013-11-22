@@ -18,10 +18,6 @@ describe Location do
     @location.address.should be_present
   end
   
-  xit 'should have many events ' do
-    @event = Event.new(:name => 'Event 2')
-    @location.events[0] = @event
-  end
   
   it 'includes events' do
     event1 = Event.new(:name => 'Event1', :day => Date.today)

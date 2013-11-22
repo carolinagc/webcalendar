@@ -30,7 +30,17 @@ gem 'jbuilder', '~> 1.2'
 group :test, :development do
       gem 'rspec-rails'
       gem 'capybara'
+      gem 'guard-rspec', require: false	
+      gem "rails-erd"		 
 end
+
+
+
+group :test  do
+  gem 'factory_girl_rails', '~> 4.0'
+end
+
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
