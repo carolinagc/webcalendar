@@ -14,3 +14,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+#Not upload config file
+config/database.yml
+config/initializers/secret_token.rb
