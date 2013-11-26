@@ -32,6 +32,7 @@ group :test, :development do
       gem 'capybara'
       gem 'guard-rspec', require: false	
       gem "rails-erd"		 
+      gem 'factory_girl'
 end
 
 

@@ -6,7 +6,7 @@ describe Event do
   end
 
   it "should name be presente" do
-    @event.name.should be_present
+    expect(@event.name).to be_present
   end
 
   it "is invalid without a name" do
@@ -15,21 +15,33 @@ describe Event do
   end
 
   it "should have a day" do
-  @event.day = Date.today
-  @event.should be_present
+    @event.day = Date.today
+    @event.should be_present
   end
   
   it 'should have a time' do 
     @event.time = Time.now
-    @event.should be_present 
+    @event.time.should be_present 
   end
   
   it  'should have an event_type' do
-    @event.event_type.should be_present
+    expect(@event_type).not_to be_present
   end
   it "is invalid without a event_type" do
     @event1 = Event.new
-    @event1.should_not be_valid
+    expect(@event1).not_to be_valid
+  end
+
+  it 'should have a location' do
+    @location = Location.create(:name => 'c-base', :address => 'somewhere 23')
+    @event.location = @location
+    expect(@event.respond_to?(:location)).to be_true
+  end
+
+  it 'should have an organizer' do
+    @organizer = Organizer.create(:name => 'MTS')
+    @event.organizer = @organizer    
+    expect(@event.respond_to?(:organizer)).to be_true
   end
 
 end

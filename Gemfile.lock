@@ -188,6 +188,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
+  factory_girl
   factory_girl_rails (~> 4.0)
   guard-rspec
   jbuilder (~> 1.2)

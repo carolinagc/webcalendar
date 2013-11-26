@@ -14,7 +14,6 @@ describe User do
     @user1 = User.new(:name => 'mark', :email=> 'example@lala.com' )
     @user1.valid?
     expect(@user1).to have(1).errors_on(:email)
-    
   end
 
 end
