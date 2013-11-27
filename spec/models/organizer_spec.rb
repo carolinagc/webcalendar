@@ -9,7 +9,7 @@ describe Organizer do
   
   it 'should be invalid if no name is present' do
     @organizer = Organizer.new
-    @orgnizer.should_not be_valid
+    @organizer.should_not be_valid
   end  
   
   
