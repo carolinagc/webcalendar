@@ -1,0 +1,41 @@
+
+
+<%= form_for(@event) do |f| %>
+  <%= link_to image_tag("icons/back.png"), events_path %>
+<div>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+
+<div>
+  <%= f.label :day %>
+  <%= f.text_field :day %>
+
+</div>
+
+<div>
+  <%= f.label :location %>
+
+</div>
+
+<div>
+  <%= f.label :organizer %>
+</div>
+
+
+<div>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+</div>
+
+<div>
+  <%= f.label :event_type %>
+  <%= f.text_field :event_type %>
+</div>
+
+<div>
+  <%= f.submit 'Create event' %> <br/>
+</div>
+
+
+<% end %>

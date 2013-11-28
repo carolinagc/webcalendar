@@ -1,0 +1,26 @@
+body {
+  background-color: #E4EEF2;
+
+}
+
+.menu {
+    background-color: #79A2B3;
+    text-shadow: 0 0 0;
+}
+
+.menu li{
+    list-style-type: none;
+    display: inline;
+}
+
+
+h1{
+    color: #6d9fac;
+    font-size: 22px;
+    text-align: center;
+}
+
+.footer{
+    background: #ADCEDB;; 
+
+}

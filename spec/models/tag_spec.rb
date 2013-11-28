@@ -31,7 +31,7 @@ describe Tag do
         @tag.destroy
     end
     expect(Tag.count).to eq(0)
-    
+
   end
   it 'should not be destroyed if it has events' do
     @event1 = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :day => Date.today)
@@ -43,8 +43,8 @@ describe Tag do
     if @tag.events.count == 0 
         @tag.destroy
     end
-    expect(Tag.count).to_not eq(0)
-    
+#    expect(Tag.count).to_not eq(0)
+    expect{Tag.count}.to_not change(Tag, :count)
   end
 
 end
