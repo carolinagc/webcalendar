@@ -1,0 +1,19 @@
+
+<%= form_for(@organizer) do |f| %>
+<%= link_to image_tag("icons/back.png"), organizers_path %>
+<div>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+
+<div>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+</div>
+
+<div>
+  <%= f.submit 'Create organizer' %> <br/>
+</div>
+
+
+<% end %>
