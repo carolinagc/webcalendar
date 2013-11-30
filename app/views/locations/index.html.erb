@@ -1,0 +1,28 @@
+<h1>List of locations </h1>
+
+<div id ="addIcon"> 
+<%=link_to "Create location", new_location_path %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @locations.each do |location| %>
+ <tr>
+      <td><%= location.name %></td>
+      <td><%= location.address %></td>
+      <td><%= location.description %></td>
+      <td> <%= link_to image_tag('icons/edit.png'), edit_location_path(location) %></td>
+      <td> <%= link_to image_tag('icons/show.png'), location_path(location) %></td>
+      <td> <%= link_to "Delete", location_path(location),  method: :delete, notice: { confirm: 'Are you sure?'}  %></td>
+    </tr>
+ <% end %>
+  </tbody>
+</table>
+
