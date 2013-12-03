@@ -1,0 +1,23 @@
+<% provide(:title, "Sign in") %>
+
+<h1>Sign in</h1>
+
+<div class="alert alert-error">Invalid...</div>
+
+<%= form_for(:session, url: sessions_path) do |f| %>
+
+<div>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+</div>
+
+<div>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+</div>
+
+<%= f.submit "Sign in" %>
+<% end %>
+
+<p> <%= link_to "Sign up now!", signup_path %> </p>
+<p> <%= link_to "Sign out", signout_path %> </p>
