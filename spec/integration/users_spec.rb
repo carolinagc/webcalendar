@@ -29,6 +29,8 @@ feature 'User' do
     expect { click_button('Create account') }.to change(User, :count).by(0)
   end
 
+  
+
   def fill_in_name_email 
     visit new_user_path
     expect(page).to have_content('Name')
