@@ -9,6 +9,8 @@ class EventsController < ApplicationController
   
   def new
     @event = Event.new
+    @locations = Location.all
+    @organizers = Organizer.all
   end
 
   def create
@@ -22,10 +24,13 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    @locations = Location.all
+    @organizers = Organizer.all
   end
 
   def update
     @event = Event.find(params[:id])
+    
     if @event.update_attributes(event_params)
        redirect_to @event, notice: 'Event was successfully updated.'
     end
@@ -41,7 +46,7 @@ class EventsController < ApplicationController
   
 private
   def event_params    
-    params.require(:event).permit(:name, :day, :time, :location, :description, :event_type)
+    params.require(:event).permit(:name, :day, :time, :description, :event_type, :location_id)
   end
 
 end

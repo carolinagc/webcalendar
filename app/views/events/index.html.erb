@@ -1,8 +1,6 @@
 <h1>List of events </h1>
 
-<div> 
-<%=link_to(image_tag("icons/add.png"), new_event_path) %>
-</div>
+<%=link_to(image_tag("icons/add.png"), new_event_path,  :id => "addIcon") %>
 
 <table>
   <thead>
@@ -10,6 +8,7 @@
       <th>Name</th>
       <th>Day & Time</th>
       <th>Location</th>
+      <th>Organizer</th>
       <th>Description</th>
       <th>Event type</th>
     </tr>
@@ -19,7 +18,16 @@
  <tr>
       <td><%= event.name %></td>
       <td><%= event.day %> </td>
-      <td><%= event.location %></td>
+      <% if event.location.present? %>
+          <td><%= event.location.name %></td>
+	<% else %>
+ 	  <td>Pending</td>
+	<% end %>
+      <% if event.organizer.present? %>
+        <td><%= event.organizer.name %></td>
+      <% else %>
+	 <td>Pending</td>
+      <% end %>
       <td><%= event.description %></td>
       <td><%= event.event_type %></td>
       <td> <%= link_to image_tag('icons/edit.png'), edit_event_path(event) %></td>

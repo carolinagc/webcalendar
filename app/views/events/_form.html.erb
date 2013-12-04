@@ -1,7 +1,9 @@
 
 
 <%= form_for(@event) do |f| %>
+
   <%= link_to image_tag("icons/back.png"), events_path %>
+
 <div>
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -14,12 +16,18 @@
 </div>
 
 <div>
-  <%= f.label :location %>
 
+  <% if @locations.present?%>
+    <%= f.label :location %>
+    <%= f.select(:location_id, options_for_select(@locations.collect {|d| [d.name, d.id]})) %>
+  <% end %>
 </div>
 
 <div>
-  <%= f.label :organizer %>
+  <% if @organizers.present?%>
+    <%= f.label :organizer %>
+    <%= f.select(:organizer_id, options_for_select(@organizers.collect {|d| [d.name, d.id]})) %>
+  <% end %>
 </div>
 
 
@@ -36,6 +44,5 @@
 <div>
   <%= f.submit 'Create event' %> <br/>
 </div>
-
 
 <% end %>

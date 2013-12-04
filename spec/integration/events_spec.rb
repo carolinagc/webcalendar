@@ -18,7 +18,7 @@ feature 'events' do
 
   scenario 'Create a new event' do
     visit events_path
-    click_link 'New event'
+    find("#addIcon").click
     expect(page).to have_content('Create new event')
     fill_in 'Name', with: 'lala'
     fill_in 'Day', with: Date.today
@@ -43,10 +43,18 @@ feature 'events' do
     expect(page).to have_content('Film')
   end
 
-
   scenario 'Delete an existing event' do
     visit events_path
     expect { click_link('Delete') }.to change(Event, :count).by(-1)
   end
+
+  scenario 'Select a location' do
+    @location = Location.create(:name => "Betahaus", :address => "Prinzessinnenstrasse 19-20")
+    visit edit_event_path @event.id
+    expect(page).to have_content('Location')
+    find('select', :text => "Betahaus").click 
+    
+  end
+
 
 end

@@ -10,8 +10,17 @@
 </p>
 
 <p>
+
+  <% if @event.location.present? %>
   <b>Location:</b>
-  <%= @event.location %>
+  <%= link_to @event.location.name, location_path(@event.location.id) %>
+  <% end %>
+</p>
+<p>
+  <% if @organizers.present? %>
+  <b>Organizer:</b>
+  <%= link_to @event.organizer.name, organizer_path(@event.organizer.id) %>
+  <% end %>
 </p>
 
 <p>
