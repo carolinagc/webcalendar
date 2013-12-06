@@ -1,0 +1,11 @@
+<h1>List of tags </h1>
+
+<%=link_to(image_tag("icons/add.png"), new_tag_path,  :id => "addIcon") %>
+
+<% @tags.each do |tag| %>
+<%= tag.name %>       <%= link_to image_tag('icons/edit.png'), edit_tag_path(tag) %>  <%= link_to "Delete", tag_path(tag),  method: :delete, notice: { confirm: 'Are you sure?'}  %>
+<br/>
+
+
+
+<% end %>

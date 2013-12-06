@@ -11,6 +11,7 @@ class EventsController < ApplicationController
     @event = Event.new
     @locations = Location.all
     @organizers = Organizer.all
+    @tags = Tag.all
   end
 
   def create
@@ -26,6 +27,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @locations = Location.all
     @organizers = Organizer.all
+    @tags = Tag.all
   end
 
   def update

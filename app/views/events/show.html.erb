@@ -29,8 +29,15 @@
 </p>
 
 <p>
-  <b>Event type:</b>
+  <b>Type:</b>
   <%= @event.event_type %>
+</p>
+
+<p>
+  <b>Tags:</b>
+  <% @event.tags.each do |tag| %>
+  <%= tag.name %>
+  <% end %>
 </p>
 
 

@@ -1,4 +1,5 @@
 class Tag < ActiveRecord::Base
-  validates :tag, presence: true 
-  has_and_belongs_to_many :events
+  validates :name, presence: true 
+  has_many :taggings
+  has_many :events, through: :taggings
 end
