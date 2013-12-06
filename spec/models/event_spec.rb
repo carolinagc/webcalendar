@@ -1,12 +1,10 @@
 require 'spec_helper'
 
 describe Event do
-  before :each do
-    @event = Event.new(:name => "Printing the washing machine", :event_type => "Workshop", :day => Date.today)
-  end
-
+ 
   it "should name be presente" do
-    expect(@event.name).to be_present
+    create_an_event  
+  expect(@event.name).to be_present
   end
 
   it "is invalid without a name" do
@@ -15,16 +13,19 @@ describe Event do
   end
 
   it "should have a day" do
+    create_an_event
     @event.day = Date.today
     @event.should be_present
   end
   
   it 'should have a time' do 
+    create_an_event
     @event.time = Time.now
     @event.time.should be_present 
   end
   
   it  'should have an event_type' do
+    create_an_event
     expect(@event_type).not_to be_present
   end
   it "is invalid without a event_type" do
@@ -33,15 +34,21 @@ describe Event do
   end
 
   it 'should have a location' do
+    create_an_event
     @location = Location.create(:name => 'c-base', :address => 'somewhere 23')
     @event.location = @location
     expect(@event.respond_to?(:location)).to be_true
   end
 
   it 'should have an organizer' do
+    create_an_event
     @organizer = Organizer.create(:name => 'MTS')
     @event.organizer = @organizer    
     expect(@event.respond_to?(:organizer)).to be_true
+  end
+
+  def create_an_event
+    @event = Event.new(:name => "Printing the washing machine", :event_type => "Workshop", :day => Date.today)
   end
 
 end
