@@ -21,6 +21,10 @@ h1{
 }
 
 .footer{
-    background: #ADCEDB;; 
+    background: #ADCEDB; 
+}
+
+#addIcon{
+    margin-bottom: auto;
 
 }

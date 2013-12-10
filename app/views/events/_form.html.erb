@@ -45,7 +45,7 @@
 
   <% if @tags.present?%>
     <%= f.label :tag %>
-    <%= f.select(:tag_id, options_for_select(@tags.collect {|d| [d.name, d.id]})) %>
+    <%= f.select(:tag_ids, options_for_select(@tags.collect {|d| [d.name, d.id]})) %>
   <% end %>
 </div>
 
