@@ -17,7 +17,7 @@
     <% @events.each do |event| %>
  <tr>
       <td><%= event.name %></td>
-      <td><%= event.day %> </td>
+      <td><%= event.day.to_formatted_s(:long) %> </td>
       <% if event.location.present? %>
           <td><%= event.location.name %></td>
 	<% else %>
