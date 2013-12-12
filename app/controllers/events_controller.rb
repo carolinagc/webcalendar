@@ -5,11 +5,11 @@ class EventsController < ApplicationController
 
   def calendar
     @events = Event.all
-    @events_by_date = @events.group_by(&:day)
-    @date = params[:date] ? Datetime.parse(params[:date]) : Date.today
-
-
-  end
+#    @events_by_date = @events.group_by(&:day)
+    @events_by_date = @events.group_by { |i| i.day.strftime("%Y %m %d") }
+    @date = params[:date] ? DateTime.parse(params[:date]) : Date.today
+ 
+ end
 
   def show
     @event = Event.find(params[:id])
