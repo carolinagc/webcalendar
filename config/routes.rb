@@ -1,6 +1,6 @@
 Webcalendar::Application.routes.draw do
 
-  root to: "events#index"
+  root to: "events#calendar"
   resources :events
   resources :locations
   resources :organizers
