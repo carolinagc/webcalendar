@@ -8,7 +8,7 @@ class EventsController < ApplicationController
 #    @events_by_date = @events.group_by(&:day)
     @events_by_date = @events.group_by { |i| i.day.strftime("%Y %m %d") }
     @date = params[:date] ? DateTime.parse(params[:date]) : Date.today
- 
+
  end
 
   def show
@@ -25,7 +25,10 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      redirect_to @event, notice: 'Event was successfully created.' 
+      respond_to do |format|
+        format.html {redirect_to @event, notice: 'Event was successfully created.' }
+        format.js
+      end
     else
       render "new"
     end 
