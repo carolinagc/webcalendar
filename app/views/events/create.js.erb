@@ -1,0 +1,12 @@
+$('#new_event').remove();
+$('#addIcon').show();
+$('#events_table').append('<tr>
+<td><%= @event.name %></td>
+<td><%= @event.day.to_formatted_s(:long) %></td>
+<td><%= @event.location %></td>
+<td><%= @event.organizer %></td>
+<td><%= @event.description %></td>
+<td> <%= link_to image_tag("icons/edit.png"), edit_event_path(event) %></td>
+<td> <%= link_to image_tag("icons/show.png"), event_path(event) %></td>
+<td> <%= link_to "Delete", event_path(event),  method: :delete, notice: { confirm: "Are you sure?"}  %></td>
+</tr>');
