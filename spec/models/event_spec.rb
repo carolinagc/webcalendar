@@ -47,6 +47,23 @@ describe Event do
     expect(@event.respond_to?(:organizer)).to be_true
   end
 
+  it 'should have a responsible of the event' do
+    create_an_event
+    @event.responsible = "Anne"
+    @event.responsible.should be_present
+  end
+
+  it 'should be a private event by default' do
+    create_an_event
+    @event.public.should_not be_true
+  end
+
+  it 'should be a public event' do
+    create_an_event
+    @event.public = true
+    @event.public.should be_true
+  end
+
   def create_an_event
     @event = Event.new(:name => "Printing the washing machine", :event_type => "Workshop", :day => Date.today)
   end
