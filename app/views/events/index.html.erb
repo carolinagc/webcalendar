@@ -2,6 +2,7 @@
 
 <%=link_to(image_tag("icons/add.png"), new_event_path,  :id => "addIcon", remote: true) %>
 
+<div id="table">
 <table>
   <thead>
     <tr>
@@ -11,6 +12,9 @@
       <th>Organizer</th>
       <th>Description</th>
       <th>Event type</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -38,3 +42,4 @@
   </tbody>
 </table>
 
+</div>
