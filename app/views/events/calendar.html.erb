@@ -4,14 +4,16 @@
     <%= @date.strftime("%B %Y") %>
     <%= link_to ">", date: @date.next_month %>
   </h2>
-  <%= calendar @date do |date| %>
+<div id= "monthly_events">
+  <%= calendar @date.to_date do |date| %>
    <%= date.day %>
    <% if @events_by_date[date.strftime("%Y %m %d")] %>
-x   <ul>
+   <ul>
       <% @events_by_date[date.strftime("%Y %m %d")].each do |event| %>
       <li><%= link_to event.name, event %></li>
       <% end %>
     </ul>
    <% end %>
   <% end %>
+</div>
 </div>
