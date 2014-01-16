@@ -1,3 +1,4 @@
+<article itemscope itemtype="http://schema.org/Place">
 <h1>List of locations </h1>
 
 <div id ="addIcon"> 
@@ -15,9 +16,9 @@
   <tbody>
     <% @locations.each do |location| %>
  <tr>
-      <td><%= location.name %></td>
-      <td><%= location.address %></td>
-      <td><%= location.description %></td>
+      <td itemprop="name"><%= location.name %></td>
+      <td itemprop="address"><%= location.address %></td>
+      <td itemprop="description"><%= location.description %></td>
       <td> <%= link_to image_tag('icons/edit.png'), edit_location_path(location) %></td>
       <td> <%= link_to image_tag('icons/show.png'), location_path(location) %></td>
       <td> <%= link_to "Delete", location_path(location),  method: :delete, notice: { confirm: 'Are you sure?'}  %></td>
@@ -26,3 +27,4 @@
   </tbody>
 </table>
 
+</article>

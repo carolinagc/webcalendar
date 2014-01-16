@@ -1,6 +1,9 @@
+<article itemscope itemtype="http://data-vocabulary.org/Event">
+
 <h1>List of events </h1>
 
 <%=link_to(image_tag("icons/add.png"), new_event_path,  :id => "addIcon", remote: true) %>
+
 
 <div id="table">
 <table>
@@ -20,20 +23,20 @@
   <tbody>
     <% @events.each do |event| %>
  <tr>
-      <td><%= event.name %></td>
-      <td><%= event.day.to_formatted_s(:long) %> </td>
+      <td itemprop="summary"><%= event.name %></td>
+      <td itemprop="startDate"><%= event.day.to_formatted_s(:long) %> </td>
       <% if event.location.present? %>
-          <td><%= event.location.name %></td>
+          <td itemprop="name" itemscope itemtype="http://schema.org/Place"><%= event.location.name %></td>
 	<% else %>
  	  <td>Pending</td>
 	<% end %>
       <% if event.organizer.present? %>
-        <td><%= event.organizer.name %></td>
+        <td itemprop="name" itemscope itemtype="http://data-vocabulary.org/Organization" ><%= event.organizer.name %></td>
       <% else %>
 	 <td>Pending</td>
       <% end %>
-      <td><%= event.description %></td>
-      <td><%= event.event_type %></td>
+      <td itemprop="description"><%= event.description %></td>
+      <td itemprop="eventType"><%= event.event_type %></td>
       <td> <%= link_to image_tag('icons/edit.png'), edit_event_path(event) %></td>
       <td> <%= link_to image_tag('icons/show.png'), event_path(event) %></td>
       <td> <%= link_to "Delete", event_path(event),  method: :delete, notice: { confirm: 'Are you sure?'}  %></td>
@@ -43,3 +46,4 @@
 </table>
 
 </div>
+</article>

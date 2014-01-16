@@ -1,49 +1,47 @@
+<article itemscope itemtype="http://data-vocabulary.org/Event">
   <%= link_to image_tag("icons/back.png"), events_path %>
-<p>
-  <b>Name:</b>
-  <%= @event.name %>
-</p>
+  <p itemprop="summary">
+    <b>Name:</b>
+    <%= @event.name %>
+  </p>
 
-<p>
-  <b>Day:</b>
-  <%= @event.day.to_formatted_s(:long) %>
-</p>
+  <p>
+    <b>Day:</b>
+    <time itemprop="startDate" datetime= <%= @event.day.to_formatted_s(:long) %> > <%= @event.day.to_formatted_s(:long) %> </time> 
+  </p>
+  <p itemprop="location" itemscope itemtype="http://data-vocabulary.org/Organization">
+    <% if @event.location.present? %>
+    <b>Location:</b>
+    <span itemprop="name">  <%= link_to @event.location.name, location_path(@event.location.id) %> </span>
+    <% end %>
+  </p>
+  <p itemprop="name" itemscope itemtype="http://data-vocabulary.org/Organization">
+    <% if @organizers.present? %>
+    <b>Organizer:</b>
+    <%= link_to @event.organizer.name, organizer_path(@event.organizer.id) %>
+    <% end %>
+  </p>
 
-<p>
+  <p itemprop="description">
+    <b>Description:</b>
+    <%= @event.description %>
+  </p>
 
-  <% if @event.location.present? %>
-  <b>Location:</b>
-  <%= link_to @event.location.name, location_path(@event.location.id) %>
-  <% end %>
-</p>
-<p>
-  <% if @organizers.present? %>
-  <b>Organizer:</b>
-  <%= link_to @event.organizer.name, organizer_path(@event.organizer.id) %>
-  <% end %>
-</p>
+  <p itemprop="eventType">
+    <b>Type:</b>
+    <%= @event.event_type %>
+  </p>
 
-<p>
-  <b>Description:</b>
-  <%= @event.description %>
-</p>
+  <p itemprop="employee" itemscope itemtype="http://schema.org/Organization">
+    <b>Person responsible:</b>
+    <%= @event.responsible %>
+  </p>
 
-<p>
-  <b>Type:</b>
-  <%= @event.event_type %>
-</p>
+  <p>
+    <b>Tags:</b>
+    <% @event.tags.each do |tag| %>
+    <%= tag.name %>
+    <% end %>
+  </p>
 
-<p>
-  <b>Person responsible:</b>
-  <%= @event.responsible %>
-</p>
-
-<p>
-  <b>Tags:</b>
-  <% @event.tags.each do |tag| %>
-  <%= tag.name %>
-  <% end %>
-</p>
-
-
-
+</article>

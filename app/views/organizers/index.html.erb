@@ -1,3 +1,4 @@
+<article itemscope itemtype="http://schema.org/Organization">
 <h1>List of organizers </h1>
 
 <div id ="addIcon"> 
@@ -14,8 +15,8 @@
   <tbody>
     <% @organizers.each do |organizer| %>
  <tr>
-      <td><%= organizer.name %></td>
-      <td><%= organizer.description %></td>
+      <td itemprop="name"><%= organizer.name %></td>
+      <td itemprop="description"><%= organizer.description %></td>
       <td> <%= link_to image_tag('icons/edit.png'), edit_organizer_path(organizer) %></td>
       <td> <%= link_to image_tag('icons/show.png'), organizer_path(organizer) %></td>
       <td> <%= link_to "Delete", organizer_path(organizer),  method: :delete, notice: { confirm: 'Are you sure?'}  %></td>
@@ -23,4 +24,4 @@
  <% end %>
   </tbody>
 </table>
-
+</article>

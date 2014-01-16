@@ -1,13 +1,14 @@
+<article itemscope itemtype="http://schema.org/Organization">
   <%= link_to image_tag("icons/back.png"), organizers_path %>
-<p>
+<p itemprop="name">
   <b>Name:</b>
   <%= @organizer.name %>
 </p>
 
-<p>
+<p itemprop="description">
   <b>Description:</b>
   <%= @organizer.description %>
 </p>
-
+</article>
 
 
