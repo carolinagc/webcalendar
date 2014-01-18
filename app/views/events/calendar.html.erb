@@ -1,11 +1,15 @@
 <div id="events">
+
+  <h2 id="week">
+    <%= link_to "Week", num_weeks: 1, date: @date.to_date %>
+  </h2>
   <h2 id="month">
     <%= link_to "<", date: @date.prev_month %>
     <%= @date.strftime("%B %Y") %>
     <%= link_to ">", date: @date.next_month %>
   </h2>
 <div id= "monthly_events">
-  <%= calendar @date.to_date do |date| %>
+  <%= calendar @num_weeks, @date.to_date do |date| %>
    <%= date.day %>
    <% if @events_by_date[date.strftime("%Y %m %d")] %>
    <ul>

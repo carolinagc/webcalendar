@@ -5,10 +5,9 @@ class EventsController < ApplicationController
 
   def calendar
     @events = Event.all
-#    @events_by_date = @events.group_by(&:day)
     @events_by_date = @events.group_by { |i| i.day.strftime("%Y %m %d") }
     @date = params[:date] ? DateTime.parse(params[:date]) : Date.today
-
+    @num_weeks = params[:num_weeks] || @num_weeks="4"
  end
 
   def show
@@ -27,7 +26,7 @@ class EventsController < ApplicationController
     if @event.save
       respond_to do |format|
         format.html {redirect_to @event, notice: 'Event was successfully created.' }
-        format.js
+         format.js
       end
     else
       render "new"
