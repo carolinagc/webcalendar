@@ -1,1 +1,4 @@
 $('#addIcon').hide().after("<%= j render('form') %>");
+$('#event_day').datetimepicker({
+       dateFormat: "dd-mm-yy", timeFormat: "h:mm TT"});
+
