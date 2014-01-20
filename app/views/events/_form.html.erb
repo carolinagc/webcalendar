@@ -1,18 +1,15 @@
-
-
-<%= form_for(@event) do |f| %>
+<%= form_for @event, remote: true do |f| %>
 
   <%= link_to image_tag("icons/back.png"), events_path %>
 
 <div>
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, :placeholder => "Write event's name", :autofocus => true %>
 </div>
-
+ 
 <div>
   <%= f.label :day %>
-  <%= f.text_field :day %>
-
+  <%= f.datetime_field :day %>
 </div>
 
 <div>
@@ -40,6 +37,16 @@
   <%= f.label :event_type %>
   <%= f.text_field :event_type %>
 </div>
+<div>
+  <%= f.label :responsible %>
+  <%= f.text_field :responsible %>
+</div>
+
+<div>
+  <%= f.label :public %>
+  <%= f.check_box :public %>
+</div>
+
 
 <div>
 
@@ -48,7 +55,6 @@
     <%= f.select(:tag_ids, options_for_select(@tags.collect {|d| [d.name, d.id]})) %>
   <% end %>
 </div>
-
 
 
 <div>
