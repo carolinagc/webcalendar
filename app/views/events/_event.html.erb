@@ -20,5 +20,5 @@
    <% end %>
    
    <td> <%= link_to image_tag('icons/edit.png'), edit_event_path(event) %></td>
-   <td> <%= link_to image_tag('icons/delete.png'), event_path(event),  method: :delete, notice: { confirm: 'Are you sure?'}  %></td>
+   <td> <%= link_to image_tag('icons/delete.png'), event_path(event),  method: :delete,  confirm: 'Are you sure?'  %></td>
 </tr>
