@@ -13,10 +13,13 @@
    <%= date.day %>
    <% if @events_by_date[date.strftime("%Y %m %d")] %>
    <ul>
-      <% @events_by_date[date.strftime("%Y %m %d")].each do |event| %>
-      <li><%= link_to event.name, event %></li>
-      <% end %>
-    </ul>
+     <% @events_by_date[date.strftime("%Y %m %d")].each do |event| %>
+     <li><%= event.day.strftime("%H:%M") %>  <%= link_to event.name, event %></li>
+     <% if @num_weeks==1 %>
+     <li></li>
+     <% end %>
+     <% end %>
+   </ul>
    <% end %>
   <% end %>
 </div>

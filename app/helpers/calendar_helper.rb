@@ -1,10 +1,5 @@
 module CalendarHelper
-#  def calendar(date = Date.today, &block)
-#    Calendar.new(self, date, block).table
-#  end
-  
   def calendar(num_weeks = "4", date = Date.today, &block)
-puts "NUMBER OF WEEKS!!!! IN weeks method"+ num_weeks
     Calendar.new(self, num_weeks, date, block).table
   end
 
