@@ -1,6 +1,9 @@
 rvm:
   - 1.9.3
 
+before_script:
+  - psql -c 'create database webcalendar_test;' -U postgres
+
 task :travis do
   ["rspec spec", "rake jasmine:ci", "rake cucumber"].each do |cmd|
     puts "Starting to run #{cmd}..."
