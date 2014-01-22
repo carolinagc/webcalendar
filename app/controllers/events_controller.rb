@@ -26,11 +26,12 @@ class EventsController < ApplicationController
     if @event.save
       respond_to do |format|
         format.html {redirect_to @event, notice: 'Event was successfully created.' }
-        format.js   {}
+        format.js
       end
     else
       respond_to do |format|
         format.html { render "new" }
+        format.js
       end
     end 
   end
@@ -60,7 +61,7 @@ class EventsController < ApplicationController
   
 private
   def event_params    
-    params.require(:event).permit(:name, :day, :time, :description, :event_type, :location_id, :tag_ids)
+    params.require(:event).permit(:name, :day, :time, :description, :event_type, :location_id, :tag_ids, :public, :responsible)
   end
 
 end

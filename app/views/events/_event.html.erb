@@ -1,0 +1,19 @@
+<tr>
+   <td itemprop="summary"><%= event.name %></td>
+   <td itemprop="startDate"><%= event.day.to_formatted_s(:long) %> </td>
+   <% if event.location.present? %>
+       <td itemprop="name" itemscope itemtype="http://schema.org/Place"><%= event.location.name %></td>
+  <% else %>
+  <td>Pending</td>
+  <% end %>
+   <% if event.organizer.present? %>
+     <td itemprop="name" itemscope itemtype="http://data-vocabulary.org/Organization" ><%= event.organizer.name %></td>
+   <% else %>
+  <td>Pending</td>
+   <% end %>
+   <td itemprop="description"><%= event.description %></td>
+   <td itemprop="eventType"><%= event.event_type %></td>
+   <td> <%= link_to image_tag('icons/edit.png'), edit_event_path(event) %></td>
+   <td> <%= link_to image_tag('icons/show.png'), event_path(event) %></td>
+   <td> <%= link_to "Delete", event_path(event),  method: :delete, notice: { confirm: 'Are you sure?'}  %></td>
+</tr>
