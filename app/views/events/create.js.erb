@@ -1,7 +1,1 @@
-<% if @event.valid? %>
-  $('#new_event').remove();
-  $('#addIcon').show();
-  $('#events_table tbody').append('<%= escape_javascript(render(@event)) %>');
-<% else %>
-  alert("there was an error");
-<% end %>
+$('#events_table tbody').append('<%= escape_javascript(render(@event)) %>');
