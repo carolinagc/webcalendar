@@ -22,7 +22,7 @@
     <% end %>
   </p>
 
-  <p itemprop="description">
+  <p class="text-wrap" itemprop="description">
     <b>Description:</b>
     <%= @event.description %>
   </p>
@@ -44,4 +44,7 @@
     <% end %>
   </p>
 
+  <p>
+ <%= link_to image_tag('icons/edit.png'), edit_event_path(@event) %>
+  </p>
 </article>

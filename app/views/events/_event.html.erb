@@ -11,9 +11,15 @@
    <% else %>
   <td>Pending</td>
    <% end %>
-   <td itemprop="description"><%= event.description %></td>
+   <% if event.responsible.present? %>
+     <td itemprop="name" itemscope itemtype="http://data-vocabulary.org/Organization" ><%= event.responsible  %></td>
+   <% else %>
+  <td>Pending</td>
+   <% end %>
+
+   <td class = "text-wrap" itemprop="description"><%= event.description %></td>
    <td itemprop="eventType"><%= event.event_type %></td>
    <td> <%= link_to image_tag('icons/edit.png'), edit_event_path(event) %></td>
-   <td> <%= link_to image_tag('icons/show.png'), event_path(event) %></td>
+   <td> <%= link_to image_tag('icons/show.png'), event_path(event)  %></td>
    <td> <%= link_to "Delete", event_path(event),  method: :delete, notice: { confirm: 'Are you sure?'}  %></td>
 </tr>
