@@ -12,7 +12,7 @@ describe Event do
     @event1.should_not be_valid
   end
 
-  it "should have a day" do
+  it "should have a startdatetime" do
     create_an_event
     @event.startdatetime = Date.today
     @event.should be_present
@@ -25,14 +25,14 @@ describe Event do
 
   it 'should return an end time' do
     create_an_event
-    @event.endtime.should be_present
+    @event.enddatetime.should be_present
   end
 
   it 'should return the correct end time' do
     create_an_event
     @event.startdatetime = Date.today
     @event.duration = 2.hours
-    expect(@event.endtime).to eq Date.today + 2.hours
+    expect(@event.enddatetime).to eq Date.today + 2.hours
   end
   
   it  'should have an event_type' do

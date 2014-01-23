@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   belongs_to :location
   belongs_to :organizer
 
-  def endtime
+  def enddatetime
   	self.startdatetime + self.duration
   end
 end
