@@ -20,8 +20,19 @@ describe Event do
   
   it 'should have a duration' do 
     create_an_event
-    @event.duration = 2.hours
     @event.duration.should be_present 
+  end
+
+  it 'should return an end time' do
+    create_an_event
+    @event.endtime.should be_present
+  end
+
+  it 'should return the correct end time' do
+    create_an_event
+    @event.day = Date.today
+    @event.duration = 2.hours
+    expect(@event.endtime).to eq Date.today + 2.hours
   end
   
   it  'should have an event_type' do

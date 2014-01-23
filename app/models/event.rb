@@ -4,4 +4,8 @@ class Event < ActiveRecord::Base
   has_many :tags, through: :taggings
   belongs_to :location
   belongs_to :organizer
+
+  def endtime
+  	self.day + self.duration
+  end
 end
