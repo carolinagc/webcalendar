@@ -26,11 +26,13 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     if @event.save
       respond_to do |format|
-        format.html {redirect_to @event, notice: 'Event was successfully created.' }
+        flash[:notice] = 'Event was successfully created.'
+        format.html {redirect_to @event }
         format.js
       end
     else
       respond_to do |format|
+        flash[:error] = 'Something went wrong.'
         format.html { render "new" }
         format.js
       end
@@ -49,6 +51,8 @@ class EventsController < ApplicationController
     
     if @event.update_attributes(event_params)
        redirect_to @event, notice: 'Event was successfully updated.'
+     else
+      render 'edit', alert: "Check mandatory fields."
     end
   end
 

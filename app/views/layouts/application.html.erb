@@ -13,6 +13,11 @@
     <nav>
       <%= render "shared/top_menu" %>
     </nav>
+    <div id="flash-message">
+    <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+      <% end %>
+    </div>
     </header>
   <section>
 
