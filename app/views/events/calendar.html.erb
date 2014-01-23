@@ -14,7 +14,7 @@
    <% if @events_by_date[date.strftime("%Y %m %d")] %>
    <ul>
      <% @events_by_date[date.strftime("%Y %m %d")].each do |event| %>
-     <li><%= event.day.strftime("%H:%M") %>  <%= link_to event.name, event %></li>
+     <li><%= event.startdatetime.strftime("%H:%M") %>  <%= link_to event.name, event %></li>
      <% if @num_weeks.to_i == 1 %>
      <p><%= event.description %></p>
      <% end %>
