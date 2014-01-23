@@ -18,10 +18,10 @@ describe Event do
     @event.should be_present
   end
   
-  it 'should have a time' do 
+  it 'should have a duration' do 
     create_an_event
-    @event.time = Time.now
-    @event.time.should be_present 
+    @event.duration = 2.hours
+    @event.duration.should be_present 
   end
   
   it  'should have an event_type' do
