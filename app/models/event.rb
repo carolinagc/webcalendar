@@ -4,12 +4,4 @@ class Event < ActiveRecord::Base
   has_many :tags, through: :taggings
   belongs_to :location
   belongs_to :organizer
-
-  def duration        
-    if (val=self[:duration]).nil?
-      0
-    else
-      val
-    end
-  end
 end
