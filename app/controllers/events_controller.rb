@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 
   def calendar
     @events = Event.all
-    @events_by_date = @events.group_by { |i| i.day.strftime("%Y %m %d") }
+    @events_by_date = @events.group_by { |i| i.startdatetime.strftime("%Y %m %d") }
     @date = params[:date] ? DateTime.parse(params[:date]) : Date.today
     @num_weeks = params[:num_weeks] || @num_weeks="4"
  end
@@ -62,7 +62,7 @@ class EventsController < ApplicationController
   
 private
   def event_params    
-    params.require(:event).permit(:name, :day, :duration, :description, :event_type, :location_id, :tag_ids, :public, :responsible)
+    params.require(:event).permit(:name, :startdatetime, :duration, :description, :event_type, :location_id, :tag_ids, :public, :responsible)
   end
 
 end

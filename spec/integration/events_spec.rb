@@ -2,13 +2,13 @@ require 'spec_helper'
 
 feature 'events' do
   before :each do
-    @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :day => Date.today)
+    @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
   end
   scenario 'List of all the events' do
     visit events_path 
     expect(page).to have_content('List of events')
     expect(page).to have_content('Name')
-    expect(page).to have_content('Day')
+    expect(page).to have_selector('#event_startdatetime')
     expect(page).to have_content('Location')
     expect(page).to have_content('Description')
     expect(page).to have_content('Event type')
@@ -21,9 +21,10 @@ feature 'events' do
     find("#addIcon").click
     expect(page).to have_content('Create new event')
     fill_in 'Name', with: 'lala'
-    fill_in 'Day', with: Date.today
+    fill_in 'event_startdatetime', with: Date.today
     fill_in 'Event type', with: 'Workshop'
     click_button 'Create event'
+    visit events_path
     expect(page).to have_content('lala')
     expect(page).to have_link('Back')
   end

@@ -25,7 +25,7 @@ function switch_new_event_to_addIcon() {
 
 $(document).ready(function() {
   // add the timepicker to the datetime field
-  $('#event_day').datetimepicker({dateFormat: "DD, d MM, yy", timeFormat: "h:mm TT"});
+  $('#event_startdatetime').datetimepicker({dateFormat: "DD, d MM, yy", timeFormat: "h:mm TT"});
 
   // hide the form
   $("#new_event").hide();

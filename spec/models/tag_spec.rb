@@ -16,14 +16,14 @@ describe Tag do
   end
 
   it 'has more than one event associated' do
-    @event1 = Event.new(:name => "Printing the washing machine", :event_type => "Workshop", :day => Date.today)
-    @event2 = Event.new(:name => "Put lights to your T-shirt", :event_type => "Workshop", :day => Date.tomorrow)
+    @event1 = Event.new(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+    @event2 = Event.new(:name => "Put lights to your T-shirt", :event_type => "Workshop", :startdatetime => Date.tomorrow)
     @tag.events = [@event1, @event2]
     expect(@tag).to have(2).events
   end
 
   it 'should be destroyed if it has no events' do
-    @event1 = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :day => Date.today)
+    @event1 = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
     @tag.events = [@event1]
     expect(@tag).to have(1).events
     @event1.destroy
@@ -35,8 +35,8 @@ describe Tag do
 
   end
   it 'should not be destroyed if it has events' do
-    @event1 = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :day => Date.today)
-    @event2 = Event.create(:name => "Print your e-textile T-shirt", :event_type => "Workshop", :day => Date.tomorrow)
+    @event1 = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+    @event2 = Event.create(:name => "Print your e-textile T-shirt", :event_type => "Workshop", :startdatetime => Date.tomorrow)
     @tag.events = [@event1, @event2]
     expect(@tag).to have(2).events
     @event1.destroy

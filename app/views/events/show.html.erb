@@ -7,7 +7,7 @@
 
   <p>
     <b>Day:</b>
-    <time itemprop="startDate" datetime= <%= @event.day.to_formatted_s(:long) %> > <%= @event.day.to_formatted_s(:long) %> </time> 
+    <time itemprop="startDate" datetime= <%= @event.startdatetime.to_formatted_s(:long) %> > <%= @event.startdatetime.to_formatted_s(:long) %> </time> 
   </p>
   <p itemprop="location" itemscope itemtype="http://data-vocabulary.org/Organization">
     <% if @event.location.present? %>

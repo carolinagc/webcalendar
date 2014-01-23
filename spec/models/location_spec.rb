@@ -19,8 +19,8 @@ describe Location do
   end
  
   it 'includes events' do
-    event1 = Event.new(:name => 'Event1', :day => Date.today)
-    event2 = Event.new(:name => 'Event2', :day => Date.today+1)
+    event1 = Event.new(:name => 'Event1', :startdatetime => Date.today)
+    event2 = Event.new(:name => 'Event2', :startdatetime => Date.today+1)
     location = Location.new(:name => 'lala', events: [event1, event2])
 #    location = Location.new(:name => 'lala', events)
     location.events.should include(event1)

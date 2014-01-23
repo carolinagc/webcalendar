@@ -14,7 +14,7 @@ describe Event do
 
   it "should have a day" do
     create_an_event
-    @event.day = Date.today
+    @event.startdatetime = Date.today
     @event.should be_present
   end
   
@@ -30,7 +30,7 @@ describe Event do
 
   it 'should return the correct end time' do
     create_an_event
-    @event.day = Date.today
+    @event.startdatetime = Date.today
     @event.duration = 2.hours
     expect(@event.endtime).to eq Date.today + 2.hours
   end
@@ -76,7 +76,7 @@ describe Event do
   end
 
   def create_an_event
-    @event = Event.new(:name => "Printing the washing machine", :event_type => "Workshop", :day => Date.today)
+    @event = Event.new(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
   end
 
 end
