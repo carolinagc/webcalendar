@@ -2,7 +2,7 @@
 <tr>
    <td itemprop="summary"><%= event.name %></td>
    <td itemprop="startDate"><%= event.day.to_formatted_s(:long) %> </td>
-   <td itemprop="duration"><%= event.duration %></td>
+   <td itemprop="duration"><%= distance_of_time_in_words(event.duration) %></td>
    <% if event.location.present? %>
      <td itemprop="name" itemscope itemtype="http://schema.org/Place"><%= event.location.name %></td>
    <% else %>
