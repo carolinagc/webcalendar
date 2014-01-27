@@ -1,43 +1,43 @@
 <article itemscope itemtype="http://data-vocabulary.org/Event">
   <%= link_to image_tag("icons/back.png"), :back %>
   <p itemprop="summary">
-    <b>Name:</b>
+    <b><%= t :name %></b>
     <%= @event.name %>
   </p>
 
   <p>
-    <b>Day:</b>
+    <b><%= t :start_date %></b>
     <time itemprop="startDate" datetime= <%= @event.startdatetime.to_formatted_s(:long) %> > <%= @event.startdatetime.to_formatted_s(:long) %> </time> 
   </p>
   <p>
-    <b>Duration</b>
+    <b><%= t :duration %></b>
     <time itemprop="duration" > <%= distance_of_time_in_words(@event.duration) %> </time> 
   </p>
   <p itemprop="location" itemscope itemtype="http://data-vocabulary.org/Organization">
     <% if @event.location.present? %>
-    <b>Location:</b>
+    <b><%= t :location %></b>
     <span itemprop="name">  <%= link_to @event.location.name, location_path(@event.location.id) %> </span>
     <% end %>
   </p>
   <p itemprop="name" itemscope itemtype="http://data-vocabulary.org/Organization">
     <% if @event.organizer.present? %>
-    <b>Organizer:</b>
+    <b><%= t :organizer %></b>
     <%= link_to @event.organizer.name, organizer_path(@event.organizer.id) %>
     <% end %>
   </p>
 
   <p class="text-wrap" itemprop="description">
-    <b>Description:</b>
+    <b><%= t :description %></b>
     <%= @event.description %>
   </p>
 
   <p itemprop="eventType">
-    <b>Event type:</b>
+    <b><%= t :event_type %></b>
     <%= @event.event_type %>
   </p>
 
   <p itemprop="employee" itemscope itemtype="http://schema.org/Organization">
-    <b>Person responsible:</b>
+    <b><%= t :responsible %></b>
     <%= @event.responsible %>
   </p>
 
@@ -46,7 +46,7 @@
   </p>
 
   <p>
-    <b>Tags:</b>
+    <b><%= t :tags %></b>
     <% @event.tags.each do |tag| %>
     <%= tag.name %>
     <% end %>

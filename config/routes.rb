@@ -1,6 +1,11 @@
 Webcalendar::Application.routes.draw do
-
+  get '/:locale' => 'events#index'
   root to: "events#calendar"
+  scope "/:locale" do
+    resources :events
+    resources :locations
+    resources :organizers
+  end
   resources :events
   resources :locations
   resources :organizers

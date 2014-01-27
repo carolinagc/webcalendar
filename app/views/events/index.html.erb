@@ -1,6 +1,6 @@
 <article itemscope itemtype="http://data-vocabulary.org/Event">
 
-<h1>List of events </h1>
+<h1><%= t :list_of_events %></h1>
 
 <%=link_to(image_tag("icons/add.png"), new_event_path,  :id => "addIcon", remote: true) %>
 
@@ -9,10 +9,10 @@
 <table id="events_table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Day & Time</th>
-      <th>Location</th>
-      <th>Organizer</th>
+      <th><%= t :name %></th>
+      <th><%= t :start_date %></th>
+      <th><%= t :location %></th>
+      <th><%= t :organizer %></th>
       <th></th>
       <th></th>
       <th></th>

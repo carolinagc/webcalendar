@@ -3,10 +3,24 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   after_filter :flash_to_headers
-
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   # This moves the flash hash to headers when using AJAX
+
+  before_action :set_locale
+ 
+  include SessionsHelper
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+      def default_url_options(options={})
+        logger.debug "default_url_options is passed options: #{options.inspect}\n"
+        { locale: I18n.locale }
+      end
+
+
   def flash_to_headers
     return unless request.xhr?
     response.headers['X-Message'] = flash_message
