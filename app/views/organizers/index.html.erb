@@ -1,15 +1,15 @@
 <article itemscope itemtype="http://schema.org/Organization">
-<h1>List of organizers </h1>
+<h1><%= t :list_of_organizers %></h1>
 
 <div id ="addIcon"> 
-<%=link_to "Create organizer", new_organizer_path %>
+<%=link_to t(:create_organizer), new_organizer_path %>
 </div>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
+      <th><%= t :name %></th>
+      <th><%= t :description %></th>
     </tr>
   </thead>
   <tbody>
@@ -19,7 +19,7 @@
       <td class="text-wrap" itemprop="description"><%= organizer.description %></td>
       <td> <%= link_to image_tag('icons/edit.png'), edit_organizer_path(organizer) %></td>
       <td> <%= link_to image_tag('icons/show.png'), organizer_path(organizer) %></td>
-      <td> <%= link_to "Delete", organizer_path(organizer),  method: :delete, notice: { confirm: 'Are you sure?'}  %></td>
+      <td> <%= link_to t(:delete), organizer_path(organizer),  method: :delete, notice: { confirm: 'Are you sure?'}  %></td>
     </tr>
  <% end %>
   </tbody>

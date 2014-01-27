@@ -3,52 +3,52 @@
   <%= link_to image_tag("icons/back.png"), events_path %>
 
 <div>
-  <%= f.label :name %>
+  <%= f.label t(:name) %>
   <%= f.text_field :name, :placeholder => "Write event's name", :autofocus => true %>
 </div>
  
 <div>
-  <%= f.label :startdatetime %>
+  <%= f.label t(:start_date) %>
   <%= f.text_field :startdatetime %>
 </div>
 
 <div>
-  <%= f.label :duration %>
+  <%= f.label t(:duration) %>
   <%= f.text_field :duration %>
 </div>
 
 <div>
 
   <% if @locations.present?%>
-    <%= f.label :location %>
+    <%= f.label t(:location) %>
     <%= f.select(:location_id, options_for_select(@locations.collect {|d| [d.name, d.id]}), { include_blank: true }) %>
   <% end %>
 </div>
 
 <div>
   <% if @organizers.present?%>
-    <%= f.label :organizer %>
+    <%= f.label t(:organizer) %>
     <%= f.select(:organizer_id, options_for_select(@organizers.collect {|d| [d.name, d.id]}), { include_blank: true }) %>
   <% end %>
 </div>
 
 
 <div>
-  <%= f.label :description %>
+  <%= f.label t(:description) %>
   <%= f.text_area :description %>
 </div>
 
 <div>
-  <%= f.label :event_type %>
+  <%= f.label t(:event_type) %>
   <%= f.text_field :event_type %>
 </div>
 <div>
-  <%= f.label :responsible %>
+  <%= f.label t(:responsible) %>
   <%= f.text_field :responsible %>
 </div>
 
 <div>
-  <%= f.label :public %>
+  <%= f.label t(:public) %>
   <%= f.check_box :public %>
 </div>
 
@@ -56,14 +56,14 @@
 <div>
 
   <% if @tags.present?%>
-    <%= f.label :tag %>
+    <%= f.label t(:tag) %>
     <%= f.select(:tag_ids, options_for_select(@tags.collect {|d| [d.name, d.id]})) %>
   <% end %>
 </div>
 
 
 <div>
-  <%= f.submit 'Create event' %> <br/>
+  <%= f.submit t(:create_event) %> <br/>
 </div>
 
 <% end %>
