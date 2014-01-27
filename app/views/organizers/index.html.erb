@@ -16,7 +16,7 @@
     <% @organizers.each do |organizer| %>
  <tr>
       <td itemprop="name"><%= organizer.name %></td>
-      <td itemprop="description"><%= organizer.description %></td>
+      <td class="text-wrap" itemprop="description"><%= organizer.description %></td>
       <td> <%= link_to image_tag('icons/edit.png'), edit_organizer_path(organizer) %></td>
       <td> <%= link_to image_tag('icons/show.png'), organizer_path(organizer) %></td>
       <td> <%= link_to "Delete", organizer_path(organizer),  method: :delete, notice: { confirm: 'Are you sure?'}  %></td>

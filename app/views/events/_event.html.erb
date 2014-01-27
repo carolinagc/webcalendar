@@ -1,26 +1,19 @@
-
 <tr>
    <td itemprop="summary"><%= event.name %></td>
-   <td itemprop="startDate"><%= event.startdatetime.to_formatted_s(:long) %> </td>
-   <td itemprop="duration"><%= distance_of_time_in_words(event.duration) %></td>
+   <td itemprop="startDate"><%= event.startdatetime.to_formatted_s(:short) %> </td>
+
    <% if event.location.present? %>
-     <td itemprop="name" itemscope itemtype="http://schema.org/Place"><%= event.location.name %></td>
+     <td itemprop="name" itemscope itemtype="http://schema.org/Place"><%=link_to event.location.name, event.location %></td>
    <% else %>
     <td>Pending</td>
   <% end %>
   <% if event.organizer.present? %>
-     <td itemprop="name" itemscope itemtype="http://data-vocabulary.org/Organization" ><%= event.organizer.name %></td>
-   <% else %>
-     <td>Pending</td>
-   <% end %>
-   <td class = "text-wrap" itemprop="description"><%= event.description %></td>
-   <td itemprop="eventType"><%= event.event_type %></td>   
-   <% if event.responsible.present? %>
-     <td itemprop="name" itemscope itemtype="http://data-vocabulary.org/Organization" ><%= event.responsible  %></td>
+     <td itemprop="name" itemscope itemtype="http://data-vocabulary.org/Organization" ><%= link_to event.organizer.name, event.organizer %></td>
    <% else %>
      <td>Pending</td>
    <% end %>
    
+   <td> <%= link_to "+ info", event_path(event) %></td>
    <td> <%= link_to image_tag('icons/edit.png'), edit_event_path(event) %></td>
    <td> <%= link_to image_tag('icons/delete.png'), event_path(event),  method: :delete,  data: { confirm: 'Are you sure?' }  %></td>
 </tr>
