@@ -32,13 +32,17 @@
   </p>
 
   <p itemprop="eventType">
-    <b><%= t :event_type %></b>
+    <b>Event type:</b>
     <%= @event.event_type %>
   </p>
 
   <p itemprop="employee" itemscope itemtype="http://schema.org/Organization">
     <b><%= t :responsible %></b>
     <%= @event.responsible %>
+  </p>
+
+  <p><b>Public</b>
+    <%= boolean_to_words(@event.public) %>
   </p>
 
   <p>
