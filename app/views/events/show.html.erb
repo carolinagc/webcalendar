@@ -9,6 +9,10 @@
     <b>Day:</b>
     <time itemprop="startDate" datetime= <%= @event.startdatetime.to_formatted_s(:long) %> > <%= @event.startdatetime.to_formatted_s(:long) %> </time> 
   </p>
+  <p>
+    <b>Duration</b>
+    <time itemprop="duration" > <%= distance_of_time_in_words(@event.duration) %> </time> 
+  </p>
   <p itemprop="location" itemscope itemtype="http://data-vocabulary.org/Organization">
     <% if @event.location.present? %>
     <b>Location:</b>
@@ -16,7 +20,7 @@
     <% end %>
   </p>
   <p itemprop="name" itemscope itemtype="http://data-vocabulary.org/Organization">
-    <% if @organizers.present? %>
+    <% if @event.organizer.present? %>
     <b>Organizer:</b>
     <%= link_to @event.organizer.name, organizer_path(@event.organizer.id) %>
     <% end %>
@@ -28,13 +32,17 @@
   </p>
 
   <p itemprop="eventType">
-    <b>Type:</b>
+    <b>Event type:</b>
     <%= @event.event_type %>
   </p>
 
   <p itemprop="employee" itemscope itemtype="http://schema.org/Organization">
     <b>Person responsible:</b>
     <%= @event.responsible %>
+  </p>
+
+  <p><b>Public</b>
+    <%= boolean_to_words(@event.public) %>
   </p>
 
   <p>

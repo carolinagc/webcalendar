@@ -21,21 +21,21 @@
 
   <% if @locations.present?%>
     <%= f.label :location %>
-    <%= f.select(:location_id, options_for_select(@locations.collect {|d| [d.name, d.id]})) %>
+    <%= f.select(:location_id, options_for_select(@locations.collect {|d| [d.name, d.id]}), { include_blank: true }) %>
   <% end %>
 </div>
 
 <div>
   <% if @organizers.present?%>
     <%= f.label :organizer %>
-    <%= f.select(:organizer_id, options_for_select(@organizers.collect {|d| [d.name, d.id]})) %>
+    <%= f.select(:organizer_id, options_for_select(@organizers.collect {|d| [d.name, d.id]}), { include_blank: true }) %>
   <% end %>
 </div>
 
 
 <div>
   <%= f.label :description %>
-  <%= f.text_field :description %>
+  <%= f.text_area :description %>
 </div>
 
 <div>

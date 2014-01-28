@@ -10,10 +10,9 @@ feature 'events' do
     expect(page).to have_content('Name')
     expect(page).to have_selector('#event_startdatetime')
     expect(page).to have_content('Location')
-    expect(page).to have_content('Description')
-    expect(page).to have_content('Event type')
+    expect(page).to have_content('Organizer')
     expect(page).to have_link('Edit', href: edit_event_path(@event))
-    expect(page).to have_link('Show', href: event_path(@event))
+    expect(page).to have_link('+ info', href: event_path(@event))
   end
 
   scenario 'Create a new event' do
@@ -23,6 +22,8 @@ feature 'events' do
     fill_in 'Name', with: 'lala'
     fill_in 'event_startdatetime', with: Date.today
     fill_in 'Event type', with: 'Workshop'
+    fill_in 'Responsible', with: 'Tina'
+    page.check("event_public")
     click_button 'Create event'
     visit events_path
     expect(page).to have_content('lala')
@@ -32,6 +33,10 @@ feature 'events' do
   scenario 'Show one event' do
     visit events_path
     visit event_path @event.id
+    expect(page).to have_content('Description')
+    expect(page).to have_content('Event type')
+    expect(page).to have_content('Person responsible')
+    expect(page).to have_content('Public')
     expect(page).to have_content("Printing the washing machine")
     expect(page).to have_link('Back')
   end

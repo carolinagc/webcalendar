@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all.order(created_at: :desc)
+    @events = Event.all.order(startdatetime: :desc)
     @event = Event.new
   end
 
@@ -48,11 +48,10 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    
     if @event.update_attributes(event_params)
        redirect_to @event, notice: 'Event was successfully updated.'
      else
-      render 'edit', alert: "Check mandatory fields."
+      render 'edit', notice: "Check mandatory fields."
     end
   end
 
@@ -66,7 +65,7 @@ class EventsController < ApplicationController
   
 private
   def event_params    
-    params.require(:event).permit(:name, :startdatetime, :duration, :description, :event_type, :location_id, :tag_ids, :public, :responsible)
+    params.require(:event).permit(:name, :startdatetime, :duration, :description, :event_type, :location_id, :organizer_id, :tag_ids, :public, :responsible)
   end
 
 end
