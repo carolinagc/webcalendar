@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe User do
   before :each do
-     @user = User.create(:name => 'julia', :email=> 'julia@lala.com', :password => 'foolala', :password_confirmation => 'foolala' )
+     @user = User.create(:name => 'julia', :email=> 'julia@lala.com', \
+              :password => 'foolalala', :password_confirmation => 'foolalala', \
+              :confirmed_at => Time.now )
   end
 
   it 'should have a name' do
