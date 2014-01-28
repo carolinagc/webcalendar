@@ -1,15 +1,14 @@
 Webcalendar::Application.routes.draw do
 
-  devise_for :users
   root to: "events#calendar"
   resources :events
   resources :locations
   resources :organizers
+  devise_for :users
   resources :users
-  resources :sessions, only: [:new, :create, :destroy]
   match '/signup', to: 'users#new', via:'get'
-  match '/signin', to: 'sessions#new', via: 'get'
-  match '/signout', to: 'sessions#destroy', via:'delete'
+  match '/signin', to: 'devise/sessions#new', via: 'get'
+  match '/signout', to: 'devise/sessions#new', via:'delete'
   resources :tags, except: [:show]
 
   match '/calendar', to: 'events#calendar', via:'get'
