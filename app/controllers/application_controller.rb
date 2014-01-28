@@ -4,13 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   after_filter :flash_to_headers
 
-  include SessionsHelper
+  before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  def sign_in_as (email)
-    
-
-  end
-  
+  # This moves the flash hash to headers when using AJAX
   def flash_to_headers
     return unless request.xhr?
     response.headers['X-Message'] = flash_message
@@ -19,21 +15,22 @@ class ApplicationController < ActionController::Base
     flash.discard # don't want the flash to appear when you reload page
   end
 
-	private
+    protected
 
-	def flash_message
-	    flash.keys.each do |type|
-	        return flash[type] unless flash[type].blank?
-	    end
-	end
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:sign_up) << :name
+    end
+    	private
 
-	def flash_type
-	    flash.keys.each do |type|
-	        return type unless flash[type].blank?
-	    end
-	end
+    	def flash_message
+    	    flash.keys.each do |type|
+    	        return flash[type] unless flash[type].blank?
+    	    end
+    	end
 
-
-
-
+    	def flash_type
+    	    flash.keys.each do |type|
+    	        return type unless flash[type].blank?
+    	    end
+    	end
 end
