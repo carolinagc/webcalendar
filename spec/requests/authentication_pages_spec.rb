@@ -7,7 +7,8 @@ feature "AuthenticationPages" do
   scenario 'with invalid information' do
     visit new_user_session_path
     expect(page).to have_content("Sign in")
-    expect(page).to have_selector("div.alert.alert-error", :value => "Invalid")
+    click_button 'Sign in'
+    expect(page).to have_selector("div.alert-alert", :value => "Invalid")
   end
   scenario 'with valid information' do
     @user = User.create(:name => 'julia', :email => 'julia@lala.com', :password => 'foolalala',   
