@@ -32,6 +32,9 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# Use Devise for authentication
+gem 'devise'
+
 group :test, :development do
       gem 'rspec-rails'
       gem 'capybara'

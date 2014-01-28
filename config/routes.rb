@@ -1,5 +1,6 @@
 Webcalendar::Application.routes.draw do
 
+  devise_for :users
   root to: "events#calendar"
   resources :events
   resources :locations
