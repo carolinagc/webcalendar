@@ -59,7 +59,7 @@ feature 'events' do
     visit edit_event_path @event.id
     expect(page).to have_content('Location')
     find('select', :text => "Betahaus").click 
-    
+
   end
 
 
