@@ -15,7 +15,7 @@ feature "AuthenticationPages" do
     fill_in 'user_email', with: 'julia@lala.com'
     fill_in 'user_password', with: 'foolalala'
     click_button 'Sign in'
-    expect(page).to have_link('Sign out'), href: signout_path
-    expect(page).not_to have_link('Sign in'), href: signin_path
+    expect(page).to have_link('Sign out'), href: destroy_user_session_path
+    expect(page).not_to have_link('Sign in'), href: new_user_session_path
   end
 end
