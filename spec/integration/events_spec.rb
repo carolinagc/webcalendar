@@ -82,6 +82,7 @@ feature 'events' do
   scenario 'Show week view' do
     visit root_path 
     click_link("Week")
+
   end
 
 
