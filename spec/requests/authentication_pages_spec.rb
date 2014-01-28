@@ -12,8 +12,8 @@ feature "AuthenticationPages" do
   scenario 'with valid information' do
     @user = User.create(:name => 'julia', :email => 'julia@lala.com', :password=> 'foolala', :password_confirmation => 'foolala')
     visit new_user_session_path
-    fill_in 'session_email', with: 'julia@lala.com'
-    fill_in 'session_password', with: 'foolala'
+    fill_in 'user_email', with: 'julia@lala.com'
+    fill_in 'user_password', with: 'foolalala'
     click_button 'Sign in'
     expect(page).to have_link('Sign out'), href: signout_path
     expect(page).not_to have_link('Sign in'), href: signin_path

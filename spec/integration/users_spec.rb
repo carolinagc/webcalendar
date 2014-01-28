@@ -3,8 +3,8 @@ require 'spec_helper'
 feature 'User' do
   scenario 'Create account' do
     fill_in_name_email
-    fill_in 'user_password', with: 'foobar'
-    fill_in 'user_password_confirmation', with: 'foobar'
+    fill_in 'user_password', with: 'foobar23'
+    fill_in 'user_password_confirmation', with: 'foobar23'
     expect { click_button('Create account') }.to change(User, :count).by(1)
   end
 
@@ -32,7 +32,7 @@ feature 'User' do
   
 
   def fill_in_name_email 
-    visit new_user_path
+    visit new_user_registration_path
     expect(page).to have_content('Name')
     fill_in 'user_name', with: 'julia'
     fill_in 'user_email', with: 'julia@lala.com'
