@@ -5,6 +5,9 @@ env:
   - DB=sqlite
   - DB=postgresql
 
+before_script:
+  - psql -c 'create database webcalendar_test;' -U postgres
+
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate spec
 
