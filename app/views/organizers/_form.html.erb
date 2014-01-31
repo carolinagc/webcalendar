@@ -1,6 +1,6 @@
 
 <%= form_for(@organizer) do |f| %>
-<%= link_to image_tag("icons/back.png", alt: t(:back)), organizers_path %>
+<%= link_to image_tag("icons/back.png", alt: t(:back), id: 'backIcon'), organizers_path %>
 <div>
   <%= f.label t(:name) %>
   <%= f.text_field :name %>

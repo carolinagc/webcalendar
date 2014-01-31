@@ -26,7 +26,7 @@ feature 'organizer' do
       fill_in 'organizer_name', with: 'RailsGirls'
       click_button I18n.t :create_organizer
       expect(page).to have_content('RailsGirls')
-      expect(page).to have_link(href: organizers_path)
+      expect(page).to have_selector('#backIcon')
     end
   end
 
