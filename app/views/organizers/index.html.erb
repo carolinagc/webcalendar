@@ -19,7 +19,7 @@
       <td class="text-wrap" itemprop="description"><%= organizer.description %></td>
       <td> <%= link_to image_tag('icons/edit.png'), edit_organizer_path(organizer), class: 'edit_organizer' %></td>
       <td> <%= link_to image_tag('icons/show.png'), organizer_path(organizer), class: 'show_organizer' %></td>
-      <td> <%= link_to t(:delete), organizer_path(organizer),  method: :delete, notice: { confirm: 'Are you sure?'}  %></td>
+      <td> <%= link_to t(:delete), organizer_path(organizer),  method: :delete, notice: { confirm: 'Are you sure?'}, class: 'delete_organizer'  %></td>
     </tr>
  <% end %>
   </tbody>
