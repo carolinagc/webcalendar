@@ -5,25 +5,29 @@ feature 'organizer' do
     @organizer = Organizer.create(:name => "K9", :description => "An intergalactic space")
   end
   scenario 'List of all the organizers' do
-    visit organizers_path 
-    expect(page).to have_content('List of organizers')
-    expect(page).to have_content('Name')
-    expect(page).to have_content('Description')
-    expect(page).to have_link('Edit', href: edit_organizer_path(@organizer))
-    expect(page).to have_link('Show', href: organizer_path(@organizer))
+    I18n.available_locales.each do |locale|
+      visit organizers_path(locale)
+      expect(page).to have_content( I18n.t :list_of_organizers)
+      expect(page).to have_content(I18n.t :name)
+      expect(page).to have_content(I18n.t :description)
+      expect(page).to have_link(I18n.t :edit, href: edit_organizer_path(@organizer))
+      expect(page).to have_link(I18n.t :show, href: organizer_path(@organizer))
+    end
   end
 
   scenario 'Create a new organizer' do
-    visit organizers_path
-#    expect(page).to have_xpath('//html/body/div/a/img')
-#    find(:xpath, "//html/body/div/a/img").click
-#    find("#addIcon").click
-    click_link ("Create organizer")
-    expect(page).to have_content('Create organizer')
-    fill_in 'Name', with: 'RailsGirls'
-    click_button 'Create organizer'
-    expect(page).to have_content('RailsGirls')
-    expect(page).to have_link('Back')
+    I18n.available_locales.each do |locale|
+      visit organizers_path(locale)
+  #    expect(page).to have_xpath('//html/body/div/a/img')
+  #    find(:xpath, "//html/body/div/a/img").click
+  #    find("#addIcon").click
+      click_link (I18n.t :create_organizer)
+      expect(page).to have_content I18n.t('create_organizer')
+      fill_in 'organizer_name', with: 'RailsGirls'
+      click_button I18n.t :create_organizer
+      expect(page).to have_content('RailsGirls')
+      expect(page).to have_link(href: organizers_path)
+    end
   end
 
   scenario 'Show one organizer' do
