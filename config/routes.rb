@@ -1,21 +1,14 @@
 Webcalendar::Application.routes.draw do
-  get '/:locale' => 'events#index'
-  root to: "events#calendar"
-  scope "/:locale" do
+  root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root
+  
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+  	root to: redirect("/%{locale}/events")
     resources :events
     resources :locations
     resources :organizers
+    devise_for :users
+    resources :users, only: [:index]
+    resources :tags, except: [:show]
   end
-  resources :events
-  resources :locations
-  resources :organizers
 
-  match '/signup', to: 'users#new', via:'get'
-
-  devise_for :users
-  resources :users, only: [:index]
-
-  resources :tags, except: [:show]
-
-  match '/calendar', to: 'events#calendar', via:'get'
 end
