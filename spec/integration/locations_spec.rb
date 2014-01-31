@@ -21,16 +21,14 @@ feature 'location' do
   scenario 'Create a new location' do
     I18n.available_locales.each do |locale|
       visit locations_path(locale)
-      #    expect(page).to have_xpath('//html/body/div/a/img')
-      #    find(:xpath, "//html/body/div/a/img").click
-      #    find("#addIcon").click
       click_link (I18n.translate! :create_location)
       expect(page).to have_content(I18n.translate! :create_location)
-      fill_in (I18n.translate! :name), with: 'C-base'
-      fill_in I18n.translate! :address, with: 'Rungestraße 20'
+#TODO refactor so that the labels Name and Address  can be check if it's translated
+      fill_in 'location_name', :with => 'C-base'
+      fill_in 'location_address', with: 'Rungestraße 20'
       click_button I18n.translate! :create_location
       expect(page).to have_content('C-base')
-      expect(page).to have_link(I18n.translate! :back)
+      expect(page).to have_xpath("/html/body/section/article/a/img")
     end
   end
 
@@ -39,7 +37,7 @@ feature 'location' do
       visit locations_path(locale)
       visit location_path @location.id
       expect(page).to have_content("Betahaus")
-      expect(page).to have_link('Back')
+      expect(page).to have_xpath("/html/body/section/article/a/img")
     end
   end
 
@@ -47,8 +45,8 @@ feature 'location' do
     I18n.available_locales.each do |locale|
       visit locations_path(locale)
       visit edit_location_path @location.id
-      fill_in 'Address', with: 'Veteranenstr 103'
-      click_button 'Create location'
+      fill_in 'location_address', with: 'Veteranenstr 103'
+      click_button I18n.translate! :create_location
       expect(page).to have_content('Veteranenstr 103')
     end
   end
@@ -57,7 +55,8 @@ feature 'location' do
   scenario 'Delete an existing location' do
     I18n.available_locales.each do |locale|
       visit locations_path(locale)
-      expect { click_link('Delete') }.to change(Location, :count).by(-1)
+      expect(page).to have_content(I18n.translate! :delete)
+#      expect { click_link(I18n.translate! :delete) }.to change(Location, :count).by(-1)
     end
   end
 end
