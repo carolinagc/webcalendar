@@ -16,6 +16,7 @@
 /tmp
 
 #Not upload config file
+
 config/database.yml
 config/database.yml.original
 config/initializers/secret_token.rb

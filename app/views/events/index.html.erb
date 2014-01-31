@@ -3,9 +3,9 @@
 <h1><%= t :list_of_events %></h1>
 
 <%=link_to(image_tag("icons/add.png"), new_event_path,  :id => "addIcon", remote: true) %>
-
+<div id="events_index_form">
 <%= render "form" %>
-
+</div>
 <table id="events_table">
   <thead>
     <tr>

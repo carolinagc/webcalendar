@@ -6,11 +6,11 @@ function switch_addIcon_to_new_event( e ) {
   e.preventDefault();
   e.stopImmediatePropagation();
   $("#addIcon").hide();
-  $('#new_event').show();
+  $('#events_index_form').show();
 }
 
 function switch_new_event_to_addIcon() {
-  $("#new_event").hide();
+  $("#events_index_form").hide();
   $('#addIcon').show();
 }
 
@@ -34,7 +34,7 @@ $(document).ready(function() {
   $('#event_startdatetime').datetimepicker({dateFormat: "DD, d MM, yy", timeFormat: "h:mm TT"});
 
   // hide the form
-  $("#new_event").hide();
+  $("#events_index_form").hide();
 
   $('a#addIcon img').on('click', switch_addIcon_to_new_event);
   // what to do when the form is successfully filled out
