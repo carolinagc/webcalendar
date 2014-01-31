@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   # This moves the flash hash to headers when using AJAX
-
   before_action :set_locale
  
   def set_locale

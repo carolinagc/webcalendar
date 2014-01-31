@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> d965691a6cd49fdf63aac1370eaca21353778a7a
 sqlite: &sqlite
     adapter: sqlite3
     database: db/<%= Rails.env %>.sqlite3
