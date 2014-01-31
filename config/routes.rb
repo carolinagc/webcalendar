@@ -8,7 +8,7 @@ Webcalendar::Application.routes.draw do
   match '/signup', to: 'users#new', via:'get'
 
   devise_for :users
-  resources :users
+  resources :users, only: [:index]
 
   resources :tags, except: [:show]
 
