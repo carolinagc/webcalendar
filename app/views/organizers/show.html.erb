@@ -9,7 +9,7 @@
   <b><%= t :description %></b>
   <%= @organizer.description %>
 </p>
-  <p> <%= link_to image_tag('icons/edit.png'), edit_organizer_path(@organizer) %></p>
+  <p> <%= link_to image_tag('icons/edit.png', id: 'edit_organizer'), edit_organizer_path(@organizer)  %></p>
 </article>
 
 

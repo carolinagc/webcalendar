@@ -4,14 +4,15 @@ feature 'organizer' do
   before :each do
     @organizer = Organizer.create(:name => "K9", :description => "An intergalactic space")
   end
+
   scenario 'List of all the organizers' do
     I18n.available_locales.each do |locale|
       visit organizers_path(locale)
       expect(page).to have_content( I18n.t :list_of_organizers)
       expect(page).to have_content(I18n.t :name)
       expect(page).to have_content(I18n.t :description)
-      expect(page).to have_link(I18n.t :edit, href: edit_organizer_path(@organizer))
-      expect(page).to have_link(I18n.t :show, href: organizer_path(@organizer))
+      expect(page).to have_selector('.edit_organizer')
+      expect(page).to have_selector('.show_organizer')
     end
   end
 
@@ -52,8 +53,13 @@ feature 'organizer' do
 
 
   scenario 'Delete an existing organizer' do
-    visit organizers_path
-    expect { click_link('Delete') }.to change(Organizer, :count).by(-1)
+    I18n.available_locales.each do |locale|
+      Organizer.first.destroy
+      Organizer.create(:name => "K9", :description => "An intergalactic space")
+      visit organizers_path(locale)
+
+      expect { click_link( I18n.t :delete ) }.to change(Organizer, :count).by(-1)
+    end 
   end
 
 end
