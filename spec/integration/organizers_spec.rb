@@ -3,6 +3,7 @@ require 'spec_helper'
 feature 'organizer' do
   before :each do
     @organizer = Organizer.create(:name => "K9", :description => "An intergalactic space")
+
   end
 
   scenario 'List of all the organizers' do
@@ -56,8 +57,9 @@ feature 'organizer' do
   scenario 'Delete an existing organizer' do
     I18n.available_locales.each do |locale|
       visit organizers_path(locale)
-      expect(page).to have_link(I18n.translate! :delete)
-#      expect { click_link( I18n.t!(:delete) ) }.to change(Organizer, :count).by(-1)
+  
+      expect(page).to have_link((I18n.translate! :delete) + "")
+      expect { click_link( I18n.t!(:delete) ) }.to change(Organizer, :count).by(-1)
     end 
   end
 
