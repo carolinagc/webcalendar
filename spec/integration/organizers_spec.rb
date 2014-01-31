@@ -56,7 +56,7 @@ feature 'organizer' do
   scenario 'Delete an existing organizer' do
     I18n.available_locales.each do |locale|
       visit organizers_path(locale)
-      expect(page).to have_content(I18n.translate! :delete)
+      expect(page).to have_link(I18n.translate! :delete)
 #      expect { click_link( I18n.t!(:delete) ) }.to change(Organizer, :count).by(-1)
     end 
   end
