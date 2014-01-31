@@ -31,18 +31,23 @@ feature 'organizer' do
   end
 
   scenario 'Show one organizer' do
-    visit organizers_path
-    visit organizer_path @organizer.id
-    expect(page).to have_content("K9")
-    expect(page).to have_link('Back')
+    I18n.available_locales.each do |locale|
+      visit organizers_path(locale)
+      visit organizer_path(locale, @organizer.id)
+      expect(page).to have_content("K9")
+      expect(page).to have_selector('#backIcon')
+    end
   end
 
   scenario 'Update an existing organizer' do
-    visit organizers_path
-    visit edit_organizer_path @organizer.id
-    fill_in 'Description', with: 'Changing the description'
-    click_button 'Create organizer'
-    expect(page).to have_content('Changing the description')
+    I18n.available_locales.each do |locale|
+
+      visit organizers_path(locale)
+      visit edit_organizer_path locale, @organizer.id
+      fill_in 'organizer_description', with: 'Changing the description'
+      click_button I18n.t :create_organizer
+      expect(page).to have_content('Changing the description')
+    end
   end
 
 
