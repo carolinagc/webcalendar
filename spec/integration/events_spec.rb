@@ -1,88 +1,104 @@
 require 'spec_helper'
 
 feature 'events' do
-  before :each do
-    @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
-  end
   scenario 'List of all the events' do
-    visit events_path 
-    expect(page).to have_content('List of events')
-    expect(page).to have_content('Name')
-    expect(page).to have_selector('#event_startdatetime')
-    expect(page).to have_content('Location')
-    expect(page).to have_content('Organizer')
-    expect(page).to have_link('Edit', href: edit_event_path(@event))
-    expect(page).to have_link('+ info', href: event_path(@event))
+    I18n.available_locales.each do |locale|
+      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      visit events_path 
+      expect(page).to have_content(I18n.translate! :list_of_events)
+      expect(page).to have_content(I18n.translate! :name)
+      expect(page).to have_selector('#event_startdatetime')
+      expect(page).to have_content(I18n.translate! :location)
+      expect(page).to have_content(I18n.translate! :organizer)
+      page.has_xpath?("//*[@id='events_table']/tbody/tr[1]/td[6]/a/img") #edit icon
+      expect(page).to have_link('+ info', href: event_path(id: @event.id))
+    end
   end
 
   scenario 'Create a new event' do
-    visit events_path
-    find("#addIcon").click
-    expect(page).to have_content('Create new event')
-    fill_in 'Name', with: 'lala'
-    fill_in 'event_startdatetime', with: Date.today
-    fill_in 'Event type', with: 'Workshop'
-    fill_in 'Responsible', with: 'Tina'
-    page.check("event_public")
-    click_button 'Create event'
-    visit events_path
-    expect(page).to have_content('lala')
-    expect(page).to have_link('Back')
+    I18n.available_locales.each do |locale|
+      visit events_path
+      find("#addIcon").click
+      expect(page).to have_content(I18n.translate! :create_event)
+      fill_in 'event_name', with: 'lala'
+      fill_in 'event_startdatetime', with: Date.today
+      fill_in 'event_event_type', with: 'Workshop'
+      fill_in 'event_responsible', with: 'Tina'
+      page.check("event_public")
+      click_button I18n.translate! :create_event
+      visit events_path
+      expect(page).to have_content('lala')
+      page.has_xpath?("//*[@id='backIcon']/img")
+    end
   end
-
   scenario 'Show one event' do
-    visit events_path
-    visit event_path @event.id
-    expect(page).to have_content('Description')
-    expect(page).to have_content('Event type')
-    expect(page).to have_content('Person responsible')
-    expect(page).to have_content('Public')
-    expect(page).to have_content("Printing the washing machine")
-    expect(page).to have_link('Back')
+    I18n.available_locales.each do |locale|
+      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      visit events_path
+      visit event_path(id: @event.id)
+      expect(page).to have_content(I18n.translate! :description)
+      expect(page).to have_content(I18n.translate! :event_type)
+      expect(page).to have_content(I18n.translate! :responsible)
+      expect(page).to have_content(I18n.translate! :public)
+      expect(page).to have_content("Printing the washing machine")
+      page.has_xpath?("//*[@id='backIcon']/img")
+    end
   end
-
   scenario 'Update an existing event' do
-    visit events_path
-    visit edit_event_path @event.id
-    fill_in 'Event type', with: 'Film'
-    click_button 'Create event'
-    expect(page).to have_content('Film')
+    I18n.available_locales.each do |locale|
+      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      visit events_path
+      visit edit_event_path(id: @event.id)
+      fill_in 'event_event_type', with: 'Film'
+      click_button I18n.translate! :create_event
+      expect(page).to have_content('Film')
+    end
   end
-
   scenario 'Delete an existing event' do
-    visit events_path
-    expect { click_link('Delete') }.to change(Event, :count).by(-1)
+    I18n.available_locales.each do |locale|
+      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      visit events_path
+      expect {find("#deleteIcon").click}.to change(Event, :count).by(-1)
+#      expect {click_link(I18n.translate! :delete) }.to change(Event, :count).by(-1)
+    end
   end
-
   scenario 'Select a location' do
-    @location = Location.create(:name => "Betahaus", :address => "Prinzessinnenstrasse 19-20")
-    visit edit_event_path @event.id
-    expect(page).to have_content('Location')
-    find('select', :text => "Betahaus").click 
-
+    I18n.available_locales.each do |locale|
+      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      @location = Location.create(:name => "Betahaus", :address => "Prinzessinnenstrasse 19-20")
+      visit edit_event_path(id: @event.id)
+      expect(page).to have_content(I18n.translate! :location)
+      find('select', :text => "Betahaus").click 
+    end
   end
   scenario 'Monthly calendar view' do
-    visit root_path 
-    expect(page).to have_content('Week')
-    expect(page).to have_content(Date.today.strftime("%B")) #month in words
-    expect(page).to have_css("td.notmonth")
-    expect(page).to have_link(@event.name, href: event_path(@event))
+    I18n.available_locales.each do |locale|
+      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      visit root_path 
+      expect(page).to have_content(I18n.translate! :week)
+      expect(page).to have_content(Date.today.strftime("%B")) #month in words
+      expect(page).to have_css("td.notmonth")
+      expect(page).to have_link(@event.name, href: event_path(@event))
+    end
   end
 
   scenario 'Show one event coming from calendar view' do
-    visit root_path 
-    visit event_path @event.id
-    expect(page).to have_content('Printing the washing machine')
-    expect(page).to have_content('Workshop')
-    expect(page).to have_content('Duration')
-    find("#backIcon").click
-    expect(page).to have_content("Week")
+    I18n.available_locales.each do |locale|
+      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      visit root_path 
+      visit event_path(id: @event.id)
+      expect(page).to have_content('Printing the washing machine')
+      expect(page).to have_content('Workshop')
+      expect(page).to have_content(I18n.translate! :duration)
+      find("#backIcon").click
+      expect(page).to have_content(I18n.translate! :week)
+    end
   end
-
   scenario 'Show week view' do
-    visit root_path 
-    click_link("Week")
+    I18n.available_locales.each do |locale|
+      visit root_path 
+      click_link(I18n.translate! :week)
+    end
   end
-
 
 end
