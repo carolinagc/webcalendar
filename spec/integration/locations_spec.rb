@@ -33,7 +33,7 @@ feature 'location' do
     I18n.available_locales.each do |locale|
       @location = Location.create(:name => "Betahaus", :address => "Prinzessinnenstrasse 19-20")
       visit locations_path(locale)
-      visit location_path @location.id
+      visit location_path(id: @location.id)
       expect(page).to have_content("Betahaus")
       expect(page).to have_xpath("/html/body/section/article/a/img")
     end

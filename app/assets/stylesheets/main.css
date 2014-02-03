@@ -30,6 +30,9 @@ h1{
 #backIcon{
     margin-bottom: auto;
 }
+#deleteIcon{
+    margin-bottom: auto;
+}
 
 .text-wrap{
     width: 20%;
