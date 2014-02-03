@@ -5,6 +5,8 @@ This is a stand alone webcalendar app. It's being developed as a pet project to 
 But we also want to have a functional web calendar at some point.
 We are using Rails 4, Ruby 2.1 and Postgresql
 
+you can find a demo in http://still-citadel-6330.herokuapp.com/
+
 ### Contributing
 
 Check out the [issues](https://github.com/carolinagc/webcalendar/issues) and see if there's something you want to work on.
