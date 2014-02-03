@@ -7,7 +7,7 @@ feature "AuthenticationPages" do
   scenario 'with invalid information' do
     visit new_user_session_path
     expect(page).to have_content("Sign in")
-    click_button 'Sign in'
+    click_button I18n.t 'devise.sessions.new.sign_in'
     expect(page).to have_selector("div.alert-alert", :value => "Invalid")
   end
   scenario 'with valid information' do
@@ -16,7 +16,7 @@ feature "AuthenticationPages" do
     visit new_user_session_path
     fill_in 'user_email', with: 'julia@lala.com'
     fill_in 'user_password', with: 'foolalala'
-    click_button 'Sign in'
+    click_button I18n.t 'devise.sessions.new.sign_in'
     expect(page).to have_link('Sign out')
     expect(page).not_to have_link('Sign in')
   end
