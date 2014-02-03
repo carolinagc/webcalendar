@@ -2,12 +2,9 @@
 require 'spec_helper'
 
 feature 'location' do
-
-  before :each do
-    @location = Location.create(:name => "Betahaus", :address => "Prinzessinnenstrasse 19-20")
-  end
   scenario 'List of all the locations' do
     I18n.available_locales.each do |locale|
+      @location = Location.create(:name => "Betahaus", :address => "Prinzessinnenstrasse 19-20")
       visit locations_path(locale)
       expect(page).to have_content( I18n.translate! :list_of_locations)
       expect(page).to have_content(I18n.translate! :name)
@@ -34,6 +31,7 @@ feature 'location' do
 
   scenario 'Show one location' do
     I18n.available_locales.each do |locale|
+      @location = Location.create(:name => "Betahaus", :address => "Prinzessinnenstrasse 19-20")
       visit locations_path(locale)
       visit location_path @location.id
       expect(page).to have_content("Betahaus")
@@ -43,6 +41,7 @@ feature 'location' do
 
   scenario 'Update an existing location' do
     I18n.available_locales.each do |locale|
+      @location = Location.create(:name => "Betahaus", :address => "Prinzessinnenstrasse 19-20")
       visit locations_path(locale)
       visit edit_location_path @location.id
       fill_in 'location_address', with: 'Veteranenstr 103'
@@ -54,9 +53,10 @@ feature 'location' do
 
   scenario 'Delete an existing location' do
     I18n.available_locales.each do |locale|
+      @location = Location.create(:name => "Betahaus", :address => "Prinzessinnenstrasse 19-20")
       visit locations_path(locale)
-      expect(page).to have_content(I18n.translate! :delete)
-#      expect { click_link(I18n.translate! :delete) }.to change(Location, :count).by(-1)
+      expect(page).to have_link(I18n.translate! :delete)
+      expect { click_link(I18n.translate! :delete) }.to change(Location, :count).by(-1)
     end
   end
 end
