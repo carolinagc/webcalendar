@@ -43,7 +43,7 @@ feature 'location' do
     I18n.available_locales.each do |locale|
       @location = Location.create(:name => "Betahaus", :address => "Prinzessinnenstrasse 19-20")
       visit locations_path(locale)
-      visit edit_location_path @location.id
+      visit edit_location_path(id: @location.id)
       fill_in 'location_address', with: 'Veteranenstr 103'
       click_button I18n.translate! :create_location
       expect(page).to have_content('Veteranenstr 103')
