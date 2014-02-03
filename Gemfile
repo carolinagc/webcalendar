@@ -35,6 +35,9 @@ gem 'jbuilder', '~> 1.2'
 # Use Devise for authentication
 gem 'devise'
 
+# Make Devise speakt tongues
+gem 'devise-i18n-views'
+
 group :test, :development do
       gem 'rspec-rails'
       gem 'capybara'
