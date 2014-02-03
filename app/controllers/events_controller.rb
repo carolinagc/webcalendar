@@ -1,11 +1,19 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all.order(startdatetime: :desc)
     @event = Event.new
+    events_shown
+  end
+
+  def events_shown
+    if user_signed_in?
+      @events = Event.all.order(startdatetime: :desc)
+    else
+      @events = Event.where(public:true).order(startdatetime: :desc)
+    end
   end
 
   def calendar
-    @events = Event.all
+    events_shown
     @events_by_date = @events.group_by { |i| i.startdatetime.strftime("%Y %m %d") }
     @date = params[:date] ? DateTime.parse(params[:date]) : Date.today
     @num_weeks = params[:num_weeks] || @num_weeks="4"
