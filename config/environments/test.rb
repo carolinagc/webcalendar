@@ -33,4 +33,7 @@ Webcalendar::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # Available locales should only be the ones we have translations for
+  config.i18n.available_locales = [:en, :es, :de]
 end

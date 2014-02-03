@@ -30,4 +30,7 @@ Webcalendar::Application.configure do
   # This is for devise. We need to tell devise what host to refer to when it
   # sends out E-mails.
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # Available locales should only be the ones we have translations for
+  config.i18n.available_locales = [:en, :es, :de]
 end

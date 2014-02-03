@@ -55,6 +55,7 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-i18n-views (0.2.8)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -205,6 +206,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   devise
+  devise-i18n-views
   factory_girl
   factory_girl_rails (~> 4.0)
   guard-rspec
