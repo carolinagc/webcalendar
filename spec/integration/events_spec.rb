@@ -109,8 +109,9 @@ feature 'events' do
     expect(page).to_not have_content("Secret meeting")
   end
 
-  scenario 'If user signed_in show all events' do
+  scenario 'if user signed in show all events' do
     @event = Event.create(:name => "Secret meeting", :event_type => "Workshop", :startdatetime => Date.today, :public => false)
+    @event2 = Event.create(:name => "Freedom of Internet", :event_type => "Discussion", :startdatetime => Date.today, :public => true)
     @user = User.create(:name => "julia", :email => "julia@lala.com", :password =>"foolalala")
     visit root_path
     click_link(I18n.translate! :sign_in)
