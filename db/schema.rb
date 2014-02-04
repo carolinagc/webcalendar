@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204122919) do
+ActiveRecord::Schema.define(version: 20140204150034) do
 
   create_table "calendars", force: true do |t|
     t.string   "url"
