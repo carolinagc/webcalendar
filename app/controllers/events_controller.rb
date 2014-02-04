@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!, :except => [:show, :index, :calendar]  
+
   def index
     @event = Event.new
     events_shown
