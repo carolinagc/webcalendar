@@ -74,11 +74,11 @@ feature 'events' do
   scenario 'Monthly calendar view' do
     I18n.available_locales.each do |locale|
       @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
-      visit root_path 
+      visit root_path (locale)
       expect(page).to have_content(I18n.translate! :week)
       expect(page).to have_content(Date.today.strftime("%B")) #month in words
       expect(page).to have_css("td.notmonth")
-      expect(page).to have_link(@event.name, href: event_path(@event))
+      expect(page).to have_link(@event.name, href: event_path(locale, @event))
     end
   end
 
