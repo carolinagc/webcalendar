@@ -1,4 +1,5 @@
 class OrganizersController < ApplicationController
+  before_action :authenticate_user!, :except => [:show, :index]  
   def index
     @organizers = Organizer.all
   end
