@@ -63,5 +63,9 @@ describe Event do
     @event.public = true
     expect(@event.public).to be_true
   end
+
+  it "should be part of a calendar" do
+    expect(@event.calendar).to eq(@calendar)
+  end
 end
 

@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   has_many :tags, through: :taggings
   belongs_to :location
   belongs_to :organizer
+  belongs_to :calendar
 
   def enddatetime
     self.startdatetime + self.duration

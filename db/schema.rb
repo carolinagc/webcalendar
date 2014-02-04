@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204122919) do
+ActiveRecord::Schema.define(version: 20140204150034) do
 
   create_table "calendars", force: true do |t|
     t.string   "url"
@@ -35,7 +35,10 @@ ActiveRecord::Schema.define(version: 20140204122919) do
     t.string   "responsible"
     t.boolean  "public",        default: false
     t.integer  "duration",      default: 3600,  null: false
+    t.integer  "calendar_id"
   end
+
+  add_index "events", ["calendar_id"], name: "index_events_on_calendar_id"
 
   create_table "locations", force: true do |t|
     t.string "name"
