@@ -30,3 +30,15 @@ en:
   show: "Show"
   sign_in: "Sign in"
   create_account: "Create account"
+  base:
+    yes: "Yes"
+    no: "No"
+    weekdays:
+      monday: "Monday"
+      tuesday: "Tuesday"
+      wednesday: "Wednesday"
+      thursday: "Thursday"
+      friday: "Friday"
+      saturday: "Saturday"
+      sunday: "Sunday"
+
