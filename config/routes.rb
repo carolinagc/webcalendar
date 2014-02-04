@@ -4,7 +4,6 @@ Webcalendar::Application.routes.draw do
 
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     resources :calendars
-    root to: redirect("/%{locale}/calendars")
     resources :events
     resources :locations
     resources :organizers
