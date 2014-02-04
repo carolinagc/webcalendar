@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Event do
   before do
-    @event = FactoryGirl.build(:event)
+    @calendar = FactoryGirl.build(:calendar)
+    @event = FactoryGirl.build(:event, calendar: @calendar)
   end
 
   it "should have a name" do
@@ -66,6 +67,11 @@ describe Event do
 
   it "should be part of a calendar" do
     expect(@event.calendar).to eq(@calendar)
+  end
+
+  it "should be invalid without a calendar" do
+    @event.calendar = nil
+    expect(@event).to be_invalid
   end
 end
 
