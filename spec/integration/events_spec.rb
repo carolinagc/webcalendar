@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'events' do
   scenario 'List of all the events' do
     I18n.available_locales.each do |locale|
-      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today, :public => true)
       visit events_path 
       expect(page).to have_content(I18n.translate! :list_of_events)
       expect(page).to have_content(I18n.translate! :name)
@@ -33,7 +33,7 @@ feature 'events' do
   end
   scenario 'Show one event' do
     I18n.available_locales.each do |locale|
-      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today, :public => true)
       visit events_path
       visit event_path(id: @event.id)
       expect(page).to have_content(I18n.translate! :description)
@@ -56,7 +56,7 @@ feature 'events' do
   end
   scenario 'Delete an existing event' do
     I18n.available_locales.each do |locale|
-      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today, :public => true)
       visit events_path
       expect {find("#deleteIcon").click}.to change(Event, :count).by(-1)
 #      expect {click_link(I18n.translate! :delete) }.to change(Event, :count).by(-1)
@@ -73,7 +73,7 @@ feature 'events' do
   end
   scenario 'Monthly calendar view' do
     I18n.available_locales.each do |locale|
-      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today, :public => true)
       visit root_path (locale)
       expect(page).to have_content(I18n.translate! :week)
       expect(page).to have_content(Date.today.strftime("%B")) #month in words
@@ -84,7 +84,7 @@ feature 'events' do
 
   scenario 'Show one event coming from calendar view' do
     I18n.available_locales.each do |locale|
-      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today, :public => true)
       visit root_path 
       visit event_path(id: @event.id)
       expect(page).to have_content('Printing the washing machine')
@@ -109,8 +109,9 @@ feature 'events' do
     expect(page).to_not have_content("Secret meeting")
   end
 
-  scenario 'If user signed_in show all events' do
+  scenario 'if user signed in show all events' do
     @event = Event.create(:name => "Secret meeting", :event_type => "Workshop", :startdatetime => Date.today, :public => false)
+    @event2 = Event.create(:name => "Freedom of Internet", :event_type => "Discussion", :startdatetime => Date.today, :public => true)
     @user = User.create(:name => "julia", :email => "julia@lala.com", :password =>"foolalala")
     visit root_path
     click_link(I18n.translate! :sign_in)
