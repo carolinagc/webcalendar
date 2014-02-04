@@ -11,7 +11,7 @@ describe Organizer do
     @organizer = Organizer.new
     @organizer.should_not be_valid
   end  
-  
-  
+
+  it { should respond_to(:url) }
 
 end

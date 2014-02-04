@@ -17,7 +17,9 @@ describe Location do
   it 'should have an address' do
     expect(@location.address).to be_present
   end
- 
+
+  it { should respond_to(:url) }
+
   it 'includes events' do
     event1 = Event.new(:name => 'Event1', :startdatetime => Date.today)
     event2 = Event.new(:name => 'Event2', :startdatetime => Date.today+1)
