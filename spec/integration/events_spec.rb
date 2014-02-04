@@ -101,4 +101,18 @@ feature 'events' do
     end
   end
 
+  scenario 'Show only public events' do
+    @event = Event.create(:name => "Secret meeting", :event_type => "Workshop", :startdatetime => Date.today, :public => false)
+    @event2 = Event.create(:name => "Freedom of Internet", :event_type => "Discussion", :startdatetime => Date.today, :public => true)
+    visit root_path
+    expect(page).to have_content("Freedom of Internet")
+    expect(page).to_not have_content("Secret meeting")
+  end
+
+  scenario 'If user signed_in show all events' do
+
+
+  end
+
+
 end
