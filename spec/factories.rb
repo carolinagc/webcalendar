@@ -21,4 +21,8 @@ FactoryGirl.define do
     name "c-base"
     address "somewhere 23"
   end
+
+  factory :tag do
+    name "Maker"
+  end
 end
