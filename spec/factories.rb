@@ -15,6 +15,7 @@ FactoryGirl.define do
 
   factory :organizer do
     name "MTS"
+    description "An intergalacic space"
   end
 
   factory :location do
