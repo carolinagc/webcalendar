@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :calendar do
+    title "A calendar title"
+  end
   factory :event do
     name "A specific event"
     event_type "Whatever"
