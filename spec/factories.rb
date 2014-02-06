@@ -3,6 +3,7 @@ FactoryGirl.define do
     title "A calendar title"
     user
   end
+
   factory :event do
     name "A specific event"
     event_type "Whatever"

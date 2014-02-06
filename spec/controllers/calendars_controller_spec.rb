@@ -23,7 +23,7 @@ describe CalendarsController do
   # This should return the minimal set of attributes required to create a valid
   # Calendar. As you add validations to Calendar, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "url" => "MyString" } }
+  let(:valid_attributes) { { title: "Some title" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
