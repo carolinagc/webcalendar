@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Calendar do
-  before do
+  before :each do
     create_calendar
   end
 
@@ -13,12 +13,13 @@ describe Calendar do
     expect(@calendar).to respond_to(:title)
   end
 
-  it "should have a proper url"
-  it "should be anonymous by default"
+  it "should have a proper url" do
+    pending "Figure out how to do this"
+  end
 
   context "with events" do
-    before do
-      create_events
+    before :each do
+      @events = FactoryGirl.create_list(:event, 2, calendar: @calendar)
     end
 
     it "should have events" do
@@ -31,16 +32,8 @@ describe Calendar do
     it "should not have a user"
   end
 
-  def create_events
-    @events = []
-    2.times do
-      @events << Event.create(name: "An Event", event_type: "Workshop", startdatetime: Date.today, calendar: @calendar)
-    end
-  end
-
   def create_calendar
-    @user = User.new(:name => 'julia', :email=> 'julia@lala.com',
-              :password => 'foolalala', :password_confirmation => 'foolalala',             :confirmed_at => Time.now )
-    @calendar = Calendar.create(url: "url", title: "test", user: @user)
+    @user = FactoryGirl.build(:user)
+    @calendar = FactoryGirl.build(:calendar, user: @user)
   end
 end
