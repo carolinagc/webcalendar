@@ -36,5 +36,4 @@ describe Organizer do
       end
     end
   end
-
 end
