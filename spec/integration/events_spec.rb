@@ -56,8 +56,11 @@ feature 'events' do
   end
   scenario 'Delete an existing event' do
     I18n.available_locales.each do |locale|
-      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today, :public => true)
+      event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today, :public => true)
+      @event2 = Event.create(:name => "Secret event", :event_type => "Workshop", :startdatetime => Date.today, :public => true)
       visit events_path
+#      require 'pry'; binding.pry
+      page.has_xpath?("//*[@id='deleteIcon']/img")
       expect {find("#deleteIcon").click}.to change(Event, :count).by(-1)
 #      expect {click_link(I18n.translate! :delete) }.to change(Event, :count).by(-1)
     end
@@ -112,14 +115,23 @@ feature 'events' do
   scenario 'if user signed in show all events' do
     @event = Event.create(:name => "Secret meeting", :event_type => "Workshop", :startdatetime => Date.today, :public => false)
     @event2 = Event.create(:name => "Freedom of Internet", :event_type => "Discussion", :startdatetime => Date.today, :public => true)
-    @user = User.create(:name => "julia", :email => "julia@lala.com", :password =>"foolalala")
-    visit root_path
-    click_link(I18n.translate! :sign_in)
-    fill_in 'user_email', with: "julia@lala.com"
-    fill_in 'user_password', with: "foolalala"
-    click_button I18n.translate! :sign_in
+    sign_in
     expect(page).to have_content("Secret meeting")
   end
 
+
+  def sign_in
+    @user = User.create(:name => "julia", :email => "julia@lala.com", :password =>"foolalala")
+    visit '/users/sign_in'
+    fill_in 'user_email', with: "julia@lala.com"
+    fill_in 'user_password', with: "foolalala"
+    click_button(I18n.translate! :sign_in)
+    expect(page).to have_content("Sign out")
+    visit events_path
+  end
+  def sign_out
+    visit '/users/sign_out'
+    expect(page).to have_content("Sign in")
+  end
 
 end
