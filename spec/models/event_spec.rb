@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Event do
-  before do
+  before :each do
     @calendar = FactoryGirl.build(:calendar)
     @event = FactoryGirl.build(:event, calendar: @calendar)
   end
