@@ -14,6 +14,8 @@
    <% end %>
    
    <td> <%= link_to "+ info", event_path(event) %></td>
-   <td> <%= link_to image_tag('icons/edit.png'), edit_event_path(event) %></td>
-   <td> <%= link_to image_tag('icons/delete.png'), event_path(event), :id => "deleteIcon",  method: :delete,  data: { confirm: 'Are you sure?' }  %></td>
+   <% if user_signed_in? %>
+     <td> <%= link_to image_tag('icons/edit.png'), edit_event_path(event) %></td>
+     <td> <%= link_to image_tag('icons/delete.png'), event_path(event), :id => "deleteIcon",  method: :delete,  data: { confirm: 'Are you sure?' }  %></td>
+   <% end %>
 </tr>
