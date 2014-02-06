@@ -3,7 +3,6 @@
 <table>
   <thead>
     <tr>
-      <th>Url</th>
       <th>User</th>
       <th>Title</th>
       <th></th>
@@ -15,7 +14,6 @@
   <tbody>
     <% @calendars.each do |calendar| %>
       <tr>
-        <td><%= calendar.url %></td>
         <td><%= calendar.user %></td>
         <td><%= calendar.title %></td>
         <td><%= link_to 'Show', calendar %></td>
