@@ -1,50 +1,32 @@
 require 'spec_helper'
 describe Tag do
-  
   before :each do
-    @tag = Tag.create(:name => 'Maker')
+    @tag = FactoryGirl.create(:tag)
   end
-  
+
   it 'should have a name' do
     expect(@tag).to be_present
   end
 
-
   it 'should not be valid' do
-    @tag = Tag.new
-    expect(@tag).to_not be_valid
+    expect(Tag.new).to be_invalid
   end
 
-  it 'has more than one event associated' do
-    @event1 = Event.new(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
-    @event2 = Event.new(:name => "Put lights to your T-shirt", :event_type => "Workshop", :startdatetime => Date.tomorrow)
-    @tag.events = [@event1, @event2]
+  it 'should have more than one event associated' do
+    @tag.events = FactoryGirl.build_list(:event, 2)
     expect(@tag).to have(2).events
   end
 
   it 'should be destroyed if it has no events' do
-    @event1 = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+    @event1 = FactoryGirl.create(:event)
     @tag.events = [@event1]
-    expect(@tag).to have(1).events
-    @event1.destroy
-    expect(Tag.count).to eq(1)
-    if @tag.events.count == 0 
-        @tag.destroy
-    end
-    expect(Tag.count).to eq(0)
-
+    # If you want to implement this behavior, uncomment this line to get started:
+    # expect{@event1.destroy}.to change{@tag.nil?}.from(false).to(true)
+    pending "Actual implentation seems to be missing"
   end
+
   it 'should not be destroyed if it has events' do
-    @event1 = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
-    @event2 = Event.create(:name => "Print your e-textile T-shirt", :event_type => "Workshop", :startdatetime => Date.tomorrow)
-    @tag.events = [@event1, @event2]
-    expect(@tag).to have(2).events
-    @event1.destroy
-    expect(Tag.count).to eq(1)
-    if @tag.events.count == 0 
-        @tag.destroy
-    end
-    expect{Tag.count}.to_not change(Tag, :count)
+    @tag.events = FactoryGirl.create_list(:event, 2)
+    expect{@tag.events.first.destroy}.not_to change{@tag.nil?}.from(false).to(true)
   end
-
 end

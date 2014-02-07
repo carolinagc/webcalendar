@@ -3,8 +3,8 @@ require 'spec_helper'
 feature 'events' do
   scenario 'List of all the events' do
     I18n.available_locales.each do |locale|
-      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
-      visit events_path 
+      @event = FactoryGirl.create(:event)
+      visit events_path
       expect(page).to have_content(I18n.translate! :list_of_events)
       expect(page).to have_content(I18n.translate! :name)
       expect(page).to have_selector('#event_startdatetime')
@@ -33,7 +33,7 @@ feature 'events' do
   end
   scenario 'Show one event' do
     I18n.available_locales.each do |locale|
-      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      @event = FactoryGirl.create(:event, name: "Printing the washing machine")
       visit events_path
       visit event_path(id: @event.id)
       expect(page).to have_content(I18n.translate! :description)
@@ -46,7 +46,7 @@ feature 'events' do
   end
   scenario 'Update an existing event' do
     I18n.available_locales.each do |locale|
-      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      @event = FactoryGirl.create(:event)
       visit events_path
       visit edit_event_path(id: @event.id)
       fill_in 'event_event_type', with: 'Film'
@@ -56,24 +56,24 @@ feature 'events' do
   end
   scenario 'Delete an existing event' do
     I18n.available_locales.each do |locale|
-      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      @event = FactoryGirl.create(:event)
       visit events_path
       expect {find("#deleteIcon").click}.to change(Event, :count).by(-1)
-#      expect {click_link(I18n.translate! :delete) }.to change(Event, :count).by(-1)
+      #      expect {click_link(I18n.translate! :delete) }.to change(Event, :count).by(-1)
     end
   end
   scenario 'Select a location' do
     I18n.available_locales.each do |locale|
-      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
-      @location = Location.create(:name => "Betahaus", :address => "Prinzessinnenstrasse 19-20")
+      @event = FactoryGirl.create(:event)
+      @location = FactoryGirl.create(:location, name: "Betahaus")
       visit edit_event_path(id: @event.id)
       expect(page).to have_content(I18n.translate! :location)
-      find('select', :text => "Betahaus").click 
+      find('select', :text => "Betahaus").click
     end
   end
   scenario 'Monthly calendar view' do
     I18n.available_locales.each do |locale|
-      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
+      @event = FactoryGirl.create(:event)
       visit root_path (locale)
       expect(page).to have_content(I18n.translate! :week)
       expect(page).to have_content(Date.today.strftime("%B")) #month in words
@@ -84,8 +84,8 @@ feature 'events' do
 
   scenario 'Show one event coming from calendar view' do
     I18n.available_locales.each do |locale|
-      @event = Event.create(:name => "Printing the washing machine", :event_type => "Workshop", :startdatetime => Date.today)
-      visit root_path 
+      @event = FactoryGirl.create(:event, name: "Printing the washing machine", event_type: "Workshop")
+      visit root_path
       visit event_path(id: @event.id)
       expect(page).to have_content('Printing the washing machine')
       expect(page).to have_content('Workshop')
@@ -96,7 +96,7 @@ feature 'events' do
   end
   scenario 'Show week view' do
     I18n.available_locales.each do |locale|
-      visit root_path 
+      visit root_path
       click_link(I18n.translate! :week)
     end
   end
