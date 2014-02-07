@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'events' do
   scenario 'List of all the events' do
     I18n.available_locales.each do |locale|
-      @event = FactoryGirl.create(:event)
+      @event = FactoryGirl.create(:event, name: "Printing the washing machine", event_type: "Workshop", public: true)
       visit events_path
       expect(page).to have_content(I18n.translate! :list_of_events)
       expect(page).to have_content(I18n.translate! :name)
@@ -33,7 +33,7 @@ feature 'events' do
   end
   scenario 'Show one event' do
     I18n.available_locales.each do |locale|
-      @event = FactoryGirl.create(:event, name: "Printing the washing machine")
+      @event = FactoryGirl.create(:event, name: "Printing the washing machine", public: true)
       visit events_path
       visit event_path(id: @event.id)
       expect(page).to have_content(I18n.translate! :description)
@@ -56,8 +56,10 @@ feature 'events' do
   end
   scenario 'Delete an existing event' do
     I18n.available_locales.each do |locale|
-      @event = FactoryGirl.create(:event)
+       @event = FactoryGirl.create(:event, name: "Printing the washing machine", event_type: "Workshop", public: true)
       visit events_path
+#      require 'pry'; binding.pry
+      page.has_xpath?("//*[@id='deleteIcon']/img")
       expect {find("#deleteIcon").click}.to change(Event, :count).by(-1)
       #      expect {click_link(I18n.translate! :delete) }.to change(Event, :count).by(-1)
     end
@@ -73,7 +75,7 @@ feature 'events' do
   end
   scenario 'Monthly calendar view' do
     I18n.available_locales.each do |locale|
-      @event = FactoryGirl.create(:event)
+      @event = FactoryGirl.create(:event, name: "Printing the washing machine", event_type: "Workshop", public: true)
       visit root_path (locale)
       expect(page).to have_content(I18n.translate! :week)
       expect(page).to have_content(Date.today.strftime("%B")) #month in words
@@ -84,7 +86,7 @@ feature 'events' do
 
   scenario 'Show one event coming from calendar view' do
     I18n.available_locales.each do |locale|
-      @event = FactoryGirl.create(:event, name: "Printing the washing machine", event_type: "Workshop")
+      @event = FactoryGirl.create(:event, name: "Printing the washing machine", event_type: "Workshop", public: true)
       visit root_path
       visit event_path(id: @event.id)
       expect(page).to have_content('Printing the washing machine')
@@ -99,6 +101,36 @@ feature 'events' do
       visit root_path
       click_link(I18n.translate! :week)
     end
+  end
+
+  scenario 'Show only public events' do
+    @event = FactoryGirl.create(:event, name: "Printing the washing machine", event_type: "Workshop", :startdatetime => Date.today, :public => false)
+    @event2 = FactoryGirl.create(:event, name: "Freedom of Internet", event_type: "Workshop",:startdatetime => Date.today, :public => true)
+    visit root_path
+    expect(page).to have_content("Freedom of Internet")
+    expect(page).to_not have_content("Secret meeting")
+  end
+
+  scenario 'if user signed in show all events' do
+    @event = Event.create(:name => "Secret meeting", :event_type => "Workshop", :startdatetime => Date.today, :public => false)
+    @event2 = Event.create(:name => "Freedom of Internet", :event_type => "Discussion", :startdatetime => Date.today, :public => true)
+    sign_in
+    expect(page).to have_content("Secret meeting")
+  end
+
+
+  def sign_in
+    @user = User.create(:name => "julia", :email => "julia@lala.com", :password =>"foolalala")
+    visit '/users/sign_in'
+    fill_in 'user_email', with: "julia@lala.com"
+    fill_in 'user_password', with: "foolalala"
+    click_button(I18n.translate! :sign_in)
+    expect(page).to have_content("Sign out")
+    visit events_path
+  end
+  def sign_out
+    visit '/users/sign_out'
+    expect(page).to have_content("Sign in")
   end
 
 end

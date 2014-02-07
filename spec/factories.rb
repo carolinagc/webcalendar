@@ -3,6 +3,7 @@ FactoryGirl.define do
     name "A specific event"
     event_type "Whatever"
     startdatetime Date.today
+    public false
   end
 
   factory :user do
