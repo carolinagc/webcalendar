@@ -33,7 +33,7 @@ feature 'events' do
   end
   scenario 'Show one event' do
     I18n.available_locales.each do |locale|
-      @event = FactoryGirl.create(:event, name: "Printing the washing machine")
+      @event = FactoryGirl.create(:event, name: "Printing the washing machine", public: true)
       visit events_path
       visit event_path(id: @event.id)
       expect(page).to have_content(I18n.translate! :description)
