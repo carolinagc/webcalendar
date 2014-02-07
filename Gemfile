@@ -17,8 +17,13 @@ gem 'jquery-timepicker-addon-rails'
 gem 'turbolinks' # Faster links
 gem 'devise' # Authentication
 
-# Make Devise speakt tongues
-gem 'devise-i18n-views'
+
+gem 'devise-i18n-views' # Make Devise speak tongues
+
+gem 'rails-i18n', '~> 4.0.0' # import standard translations
+
+gem 'i18n-tasks', '~> 0.2.10'  # Gem for testing i18n!
+
 
 group :test, :development do
   gem 'rspec-rails'
