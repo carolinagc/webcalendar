@@ -22,7 +22,6 @@ class CalendarsController < ApplicationController
   # POST /calendars
   def create
     @calendar = Calendar.new(calendar_params)
-
     if @calendar.save
       redirect_to @calendar, notice: 'Calendar was successfully created.'
     else
@@ -53,6 +52,6 @@ class CalendarsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def calendar_params
-      params.require(:calendar).permit(:user_id, :title)
+      params.require(:calendar).permit(:title, :user_id)
     end
 end
