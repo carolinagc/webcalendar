@@ -12,6 +12,10 @@ data:
     # this is the default catch-all:
     - 'config/locales/%{locale}.yml' # path is short for ['*', path]
 
+ignore_unused:
+  - base.weekdays.* # ignore these because they're not referenced in the source, but still necessary
+
+
 # these words are the same in english and other languages 
 # and shall not be reported missing.
 ignore_eq_base: 

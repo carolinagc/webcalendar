@@ -3,8 +3,6 @@ es:
   address: Dirección
   back: Atrás
   base:
-    'false': 'Falso' # these are written in '' because otherwise they'd be interpreted as booleans.
-    'true': 'Verdadero'
     'no': 'no'
     'yes': 'sí'
     weekdays:
@@ -17,7 +15,6 @@ es:
       wednesday: Miércoles
   calendar: Calendario
   contact: Contacto
-  create_account: Crear cuenta
   create_event: Crear evento
   create_location: Crear lugar
   create_organizer: Crear organizador
@@ -40,8 +37,7 @@ es:
   pending: Pendiente
   public: Público
   responsible: Persona responsable
-  show: Mostrar
-  sign_in: Iniciar sesión
+#  show: Mostrar
   start_date: Día & Hora
   submit: Registrar
   tags: Tags

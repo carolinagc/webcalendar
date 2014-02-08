@@ -3,8 +3,6 @@ de:
   address: Addresse
   back: Zurück
   base:
-    'false': 'Falsch' # these are written in '' because otherwise they'd be interpreted as booleans.
-    'true': 'Wahr'
     'no': 'nein'
     'yes': 'ja'
     weekdays:
@@ -17,7 +15,6 @@ de:
       wednesday: Mittwoch
   calendar: Kalender
   contact: Kontaktieren Sie uns
-  create_account: Account erstellen
   create_event: Neue Veranstaltung
   create_location: Neuer Ort
   create_organizer: Neue Organisation
@@ -40,8 +37,7 @@ de:
   pending: Unbearbeitet
   public: "Öffentlich"
   responsible: Verantwortliche Person
-  show: Anzeigen
-  sign_in: Einloggen
+#  show: Anzeigen
   start_date: Datum und Uhrzeit
   tags: Tags
   week: Woche

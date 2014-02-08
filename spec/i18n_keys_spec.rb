@@ -8,6 +8,7 @@ describe 'translation keys'  do
     expect(i18n.untranslated_keys).to have(0).keys
   end
 
+
   it 'are all used' do
     expect(i18n.unused_keys).to have(0).keys
   end

@@ -3,8 +3,6 @@ en:
   address: Address
   back: Back
   base:
-    'false': 'False' # these are written in '' because otherwise they'd be interpreted as booleans.
-    'true': 'True'
     'no': 'no'
     'yes': 'yes'
     weekdays:
@@ -17,7 +15,6 @@ en:
       wednesday: Wednesday
   calendar: Calendar
   contact: Contact us
-  create_account: Create account
   create_event: Create event
   create_location: Create location
   create_organizer: Create organizer
@@ -40,8 +37,7 @@ en:
   pending: Pending
   public: Public
   responsible: Person responsible
-  show: Show
-  sign_in: Sign in
+#  show: Show
   start_date: Date & Time
   tags: Tags
   week: Week
