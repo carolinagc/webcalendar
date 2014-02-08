@@ -29,8 +29,9 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'capybara', '1.1.4'
   gem 'guard-rspec', require: false
-  gem "rails-erd"
+  gem 'rails-erd'
   gem 'factory_girl'
+  gem 'database_cleaner'
 end
 
 group :test  do
