@@ -15,7 +15,7 @@ defaults: &defaults
     pool: 16
     timeout: 5000
     host: localhost
-    <<: *<%= p ENV['DB'] || "sqlite" %>
+    <<: *<%= ENV['DB'] || "sqlite" %>
 
 development:
     <<: *defaults
