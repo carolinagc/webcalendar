@@ -1,44 +1,48 @@
+---
 en:
-  name: "Name"
-  start_date: "Date & Time"
-  location: "Location"
-  organizer: "Organizer"
-  list_of_events: "List of events"
-  pending: "Pending"
-  calendar: "Calendar"
-  back: "Back"
-  events: "Events"
-  organizers: "Organizers"
-  license: "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."
-  duration: "Duration"
-  description: "Description"
-  event_type: "Type of event"
-  responsible: "Person responsible"
-  tags: "Tags"
-  contact: "Contact us"
-  public: "Public"
-  create_event: "Create event"
-  list_of_locations: "List of locations"
-  delete: "Delete"
-  address: "Address"
-  create_location: "Create location"
-  edit: "Edit"
-  list_of_organizers: "List of organizers"
-  create_organizer: "Create organizer"
-  week: "Week"
-  back: "Back"
-  show: "Show"
-  sign_in: "Sign in"
-  create_account: "Create account"
+  address: Address
+  back: Back
   base:
-    yes: "Yes"
-    no: "No"
+    'false': 'False' # these are written in '' because otherwise they'd be interpreted as booleans.
+    'true': 'True'
+    'no': 'no'
+    'yes': 'yes'
     weekdays:
-      monday: "Monday"
-      tuesday: "Tuesday"
-      wednesday: "Wednesday"
-      thursday: "Thursday"
-      friday: "Friday"
-      saturday: "Saturday"
-      sunday: "Sunday"
-
+      friday: Friday
+      monday: Monday
+      saturday: Saturday
+      sunday: Sunday
+      thursday: Thursday
+      tuesday: Tuesday
+      wednesday: Wednesday
+  calendar: Calendar
+  contact: Contact us
+  create_account: Create account
+  create_event: Create event
+  create_location: Create location
+  create_organizer: Create organizer
+  delete: Delete
+  description: Description
+  duration: Duration
+  edit: Edit
+  event_type: Type of event
+  events: Events
+  license: This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
+    International License.
+  list_of_events: List of events
+  list_of_locations: List of locations
+  list_of_organizers: List of organizers
+  location: Location
+  locations: Locations
+  name: Name
+  organizer: Organizer
+  organizers: Organizers
+  pending: Pending
+  public: Public
+  responsible: Person responsible
+  show: Show
+  sign_in: Sign in
+  start_date: Date & Time
+  tags: Tags
+  week: Week
+  tag: Tag

@@ -1,33 +1,49 @@
+---
 es:
-  name: "Nombre"
-  start_date: "Día & Hora"
-  location: "Lugar"
-  locations: "Lugares"
-  organizer: "Organizador"
-  list_of_events: "Lista de eventos"
-  pending: "Pendiente"
-  calendar: "Calendario"
-  events: "Eventos"
-  organizers: "Organizadores"
-  license: "Esta obra está licenciada bajo  Creative Commons Attribution-ShareAlike 4.0 International License."
-  duration: "Duración"
-  description: "Descripción"
-  event_type: "Tipo de evento"
-  responsible: "Persona responsable"
-  tags: "Tags"
-  contact: "Contacto"
-  public: "Público"
-  create_event: "Crear evento"
-  list_of_locations: "Lista de lugares"
-  address: "Dirección"
-  delete: "Borrar"
-  create_location: "Crear lugar"
-  edit: "Editar"
-  list_of_organizers: "Lista de organizadores"
-  create_organizer: "Crear organizador"	
-  week: "Semana"
-  back: "Atrás"
-  show: "Mostrar"
-  sign_in: "Iniciar sesión"
-  submit: "Registrar"
-  create_account: "Crear cuenta"
+  address: Dirección
+  back: Atrás
+  base:
+    'false': 'Falso' # these are written in '' because otherwise they'd be interpreted as booleans.
+    'true': 'Verdadero'
+    'no': 'no'
+    'yes': 'sí'
+    weekdays:
+      friday: Viernes
+      monday: Lunes
+      saturday: Sábado
+      sunday: Domingo
+      thursday: Plácido
+      tuesday: Martes
+      wednesday: Miércoles
+  calendar: Calendario
+  contact: Contacto
+  create_account: Crear cuenta
+  create_event: Crear evento
+  create_location: Crear lugar
+  create_organizer: Crear organizador
+  delete: Borrar
+  description: Descripción
+  duration: Duración
+  edit: Editar
+  event_type: Tipo de evento
+  events: Eventos
+  license: Esta obra está licenciada bajo  Creative Commons Attribution-ShareAlike
+    4.0 International License.
+  list_of_events: Lista de eventos
+  list_of_locations: Lista de lugares
+  list_of_organizers: Lista de organizadores
+  location: Lugar
+  locations: Lugares
+  name: Nombre
+  organizer: Organizador
+  organizers: Organizadores
+  pending: Pendiente
+  public: Público
+  responsible: Persona responsable
+  show: Mostrar
+  sign_in: Iniciar sesión
+  start_date: Día & Hora
+  submit: Registrar
+  tags: Tags
+  week: Semana
+  tag: Tag

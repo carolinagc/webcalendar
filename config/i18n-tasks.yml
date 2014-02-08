@@ -1,0 +1,25 @@
+# i18n data storage
+data:
+  read: 
+    # this one is default:
+    - 'config/locales/%{locale}.yml'
+    # add this one to also read from namespaced files, e.g. simple_form.en.yml:
+    - 'config/locales/*.%{locale}.yml'
+  # a list of {key pattern => file} routes, matched top to bottom
+  write:
+    # this would save all devise keys in it's own file (per locale):
+    - ['devise.*', 'config/locales/devise.%{locale}.yml']
+    # this is the default catch-all:
+    - 'config/locales/%{locale}.yml' # path is short for ['*', path]
+
+# these words are the same in english and other languages 
+# and shall not be reported missing.
+ignore_eq_base: 
+  all:
+    - tags
+    - tag
+  de: 
+    - name
+    - locations
+  es:
+    - base.no
