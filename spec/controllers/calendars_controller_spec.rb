@@ -25,9 +25,9 @@ describe CalendarsController do
 
     it "assigns the related events as @events" do
       calendar = Calendar.create! valid_attributes
-      calendar.events = FactoryGirl.build_list(:event, 2, calendar: calendar)
+      FactoryGirl.create(:event, calendar: calendar)
       get :show, {token: calendar.token}
-      assigns(:events).should eq(calendar.events)
+      expect([assigns(:events)]).to include(calendar.events)
     end
   end
 
