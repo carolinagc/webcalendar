@@ -23,4 +23,9 @@ describe User do
     expect(@user.password).to be_present
     expect(@user.password_confirmation).to be_present
   end
+
+  it "should have a calendar after creation" do
+    pending "Implement this somehow"
+    expect(@user.calendar).to be_present
+  end
 end

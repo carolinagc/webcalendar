@@ -1,5 +1,7 @@
 class CalendarsController < ApplicationController
   before_action :set_calendar, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:active]
+
   def index
     if user_signed_in?
       @calendars = Calendar.where(user: current_user)
@@ -9,18 +11,15 @@ class CalendarsController < ApplicationController
 
   def active
     if user_signed_in?
-      unless current_user.current_calendar_id
-        # try out some things
-        calendar = Calendar.create(title: "test", user: current_user)
-        Event.create(name: "test event", event_type: "bla", startdatetime: DateTime.now, calendar: calendar)
-        current_user.current_calendar = calendar
+      if current_user.current_calendar_id
+        @calendar = current_user.current_calendar
+      else
+        # TODO: Pick the first available calendar if there is one available
+        redirect_to new_calendar_url, notice: "You don't have any calendars. Create one here."
       end
-      @calendar = current_user.current_calendar
     else
-      # TODO: Figure out calendar for unregistered user
-      @calendar = Calendar.create(title: "new", user: User.find(0))
+      redirect_to calendars_url, notice: "Nothing here"
     end
-    @events = @calendar.events
   end
 
   def show

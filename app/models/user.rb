@@ -6,7 +6,11 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   has_many :calendars
 
-  def current_calendar(user)
-    find(user.id).current_calendar
+  def current_calendar
+    Calendar.where(id: current_calendar_id)
+  end
+
+  def current_calendar=(calendar)
+    current_calendar_id = calendar.id
   end
 end

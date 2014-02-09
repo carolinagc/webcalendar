@@ -1,6 +1,7 @@
 require "spec_helper"
 describe "user sign in" do
   it "allows users to sign in after they have registered" do
+    pending "The behavior of this will change later"
     user = User.create(:name => "julia", :email    => "julia@lala.com",
                        :password => "foolalala")
 

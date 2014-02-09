@@ -79,6 +79,7 @@ feature 'events' do
     end
   end
   scenario 'Monthly calendar view' do
+    pending "Move this to calendar integration spec"
     I18n.available_locales.each do |locale|
       @event = FactoryGirl.create(:event, name: "Printing the washing machine", event_type: "Workshop", public: true, calendar: @calendar)
       visit root_path (locale)
@@ -90,6 +91,7 @@ feature 'events' do
   end
 
   scenario 'Show one event coming from calendar view' do
+    pending "Move this to calendar integration spec"
     I18n.available_locales.each do |locale|
       @event = FactoryGirl.create(:event, name: "Printing the washing machine", event_type: "Workshop", public: true, calendar: @calendar)
       visit root_path
@@ -102,6 +104,7 @@ feature 'events' do
     end
   end
   scenario 'Show week view' do
+    pending "Move this to calendar integration spec"
     I18n.available_locales.each do |locale|
       visit root_path
       click_link(I18n.translate! :week)
@@ -109,6 +112,7 @@ feature 'events' do
   end
 
   scenario 'Show only public events' do
+    pending "Move this to calendar integration spec"
     @event = FactoryGirl.create(:event, name: "Printing the washing machine", event_type: "Workshop", :startdatetime => Date.today, :public => false, calendar: @calendar)
     @event2 = FactoryGirl.create(:event, name: "Freedom of Internet", event_type: "Workshop",:startdatetime => Date.today, :public => true, calendar: @calendar)
     visit root_path
