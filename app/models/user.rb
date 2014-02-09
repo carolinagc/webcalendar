@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   validates :name, presence: true
   has_many :calendars
+
+  def current_calendar(user)
+    find(user.id).current_calendar
+  end
 end

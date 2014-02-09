@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140209142855) do
+ActiveRecord::Schema.define(version: 20140209174700) do
 
   create_table "calendars", force: true do |t|
     t.string   "title"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "token"
   end
 
   add_index "calendars", ["user_id"], name: "index_calendars_on_user_id"

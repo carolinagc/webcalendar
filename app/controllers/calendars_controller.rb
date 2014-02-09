@@ -1,11 +1,32 @@
 class CalendarsController < ApplicationController
   before_action :set_calendar, only: [:show, :edit, :update, :destroy]
   def index
-    @calendars = Calendar.all
+    if user_signed_in?
+      @calendars = Calendar.where(user: current_user)
+    end
+    # TODO: Handle anonymous users
+  end
+
+  def active
+    if user_signed_in?
+      unless current_user.current_calendar_id
+        # try out some things
+        calendar = Calendar.create(title: "test", user: current_user)
+        Event.create(name: "test event", event_type: "bla", startdatetime: DateTime.now, calendar: calendar)
+        current_user.current_calendar = calendar
+      end
+      @calendar = current_user.current_calendar
+    else
+      # TODO: Figure out calendar for unregistered user
+      @calendar = Calendar.create(title: "new", user: User.find(0))
+    end
+    @events = @calendar.events
   end
 
   def show
-    @events = @calendar.events
+    if user_signed_in?
+      @events = @calendar.events
+    end
   end
 
   def new
