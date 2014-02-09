@@ -19,14 +19,14 @@ describe CalendarsController do
   describe "GET show" do
     it "assigns the requested calendar as @calendar" do
       calendar = Calendar.create! valid_attributes
-      get :show, {:id => calendar.to_param}
+      get :show, {token: calendar.token}
       assigns(:calendar).should eq(calendar)
     end
 
     it "assigns the related events as @events" do
       calendar = Calendar.create! valid_attributes
       calendar.events = FactoryGirl.build_list(:event, 2, calendar: calendar)
-      get :show, {:id => calendar.to_param}
+      get :show, {token: calendar.token}
       assigns(:events).should eq(calendar.events)
     end
   end
@@ -41,7 +41,7 @@ describe CalendarsController do
   describe "GET edit" do
     it "assigns the requested calendar as @calendar" do
       calendar = Calendar.create! valid_attributes
-      get :edit, {:id => calendar.to_param}
+      get :edit, {token: calendar.token}
       assigns(:calendar).should eq(calendar)
     end
   end
@@ -92,20 +92,18 @@ describe CalendarsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Calendar.any_instance.should_receive(:update).with({ "title" => "MyString" })
-        put :update, {:id => calendar.to_param, :calendar => { "title" => "MyString" }}
+        put :update, {token: calendar.token, :calendar => { "title" => "MyString" }}
       end
 
       it "assigns the requested calendar as @calendar" do
         calendar = Calendar.create! valid_attributes
-        # put :update, {:id => calendar.to_param, :calendar => valid_attributes}
-        put :update, {id: calendar.to_param, calendar: { title: "test", user: FactoryGirl.build(:user) }}
+        put :update, {token: calendar.token, calendar: { title: "test", user: FactoryGirl.build(:user) }}
         assigns(:calendar).should eq(calendar)
       end
 
       it "redirects to the calendar" do
         calendar = Calendar.create! valid_attributes
-        # put :update, {id: calendar.to_param, calendar: valid_attributes}
-        put :update, {id: calendar.to_param, calendar: { title: "test", user: FactoryGirl.build(:user) }}
+        put :update, {token: calendar.token, calendar: { title: "test", user: FactoryGirl.build(:user) }}
         response.should redirect_to(calendar)
       end
     end
@@ -115,7 +113,7 @@ describe CalendarsController do
         calendar = Calendar.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Calendar.any_instance.stub(:save).and_return(false)
-        put :update, {:id => calendar.to_param, :calendar => { "title" => "invalid value" }}
+        put :update, {token: calendar.token, :calendar => { "title" => "invalid value" }}
         assigns(:calendar).should eq(calendar)
       end
 
@@ -123,7 +121,7 @@ describe CalendarsController do
         calendar = Calendar.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Calendar.any_instance.stub(:save).and_return(false)
-        put :update, {:id => calendar.to_param, :calendar => { "title" => "invalid value" }}
+        put :update, {token: calendar.token, :calendar => { "title" => "invalid value" }}
         response.should render_template("edit")
       end
     end
@@ -133,13 +131,13 @@ describe CalendarsController do
     it "destroys the requested calendar" do
       calendar = Calendar.create! valid_attributes
       expect {
-        delete :destroy, {:id => calendar.to_param}
+        delete :destroy, {token: calendar.token}
       }.to change(Calendar, :count).by(-1)
     end
 
     it "redirects to the calendars list" do
       calendar = Calendar.create! valid_attributes
-      delete :destroy, {:id => calendar.to_param}
+      delete :destroy, {token: calendar.token}
       response.should redirect_to(calendars_url)
     end
   end
