@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Event do
-  before do
+  before :each do
     @calendar = FactoryGirl.build(:calendar)
     @event = FactoryGirl.build(:event, calendar: @calendar)
   end
@@ -72,6 +72,23 @@ describe Event do
   it 'should be a public event' do
     @event.public = true
     expect(@event.public).to be_true
+  end
+
+  describe ".public" do
+    it "should return only public events" do
+      public_event = FactoryGirl.create(:public_event, calendar: @calendar)
+      private_event = FactoryGirl.create(:private_event, calendar: @calendar)
+      expect(Event.public).to include(public_event)
+      expect(Event.public).not_to include(private_event)
+    end
+  end
+
+  describe ".ordered_by_start" do
+    it "should return events ordered by startdatetime" do
+      event2 = FactoryGirl.create(:event, startdatetime: 2.days.from_now, calendar: @calendar)
+      event1 = FactoryGirl.create(:event, startdatetime: 1.days.from_now, calendar: @calendar)
+      expect(Event.ordered_by_start.first.startdatetime).to be > Event.ordered_by_start.last.startdatetime
+    end
   end
 end
 

@@ -8,9 +8,9 @@ class EventsController < ApplicationController
 
   def events_shown
     if user_signed_in?
-      @events = Event.all.order(startdatetime: :desc)
+      @events = Event.ordered_by_start
     else
-      @events = Event.where(public:true).order(startdatetime: :desc)
+      @events = Event.public.ordered_by_start
     end
   end
 
@@ -77,5 +77,4 @@ class EventsController < ApplicationController
     def set_event
       @event = Event.find(params[:id])
     end
-
 end

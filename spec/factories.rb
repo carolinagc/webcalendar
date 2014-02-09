@@ -3,7 +3,17 @@ FactoryGirl.define do
     name "A specific event"
     event_type "Whatever"
     startdatetime Date.today
-    public false
+
+    trait :public do
+      public true
+    end
+
+    trait :private do
+      public false
+    end
+
+    factory :public_event, traits: [:public]
+    factory :private_event, traits: [:private]
   end
 
   factory :user do
@@ -27,4 +37,5 @@ FactoryGirl.define do
   factory :tag do
     name "Maker"
   end
+
 end

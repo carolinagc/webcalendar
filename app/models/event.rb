@@ -6,6 +6,9 @@ class Event < ActiveRecord::Base
   belongs_to :organizer
   belongs_to :calendar
 
+  scope :ordered_by_start, -> { order(startdatetime: :desc) }
+  scope :public, -> { where(public: true) }
+
   def enddatetime
     self.startdatetime + self.duration
   end
