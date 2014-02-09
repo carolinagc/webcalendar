@@ -5,7 +5,7 @@ class CalendarsController < ApplicationController
   end
 
   def show
-
+    @events = @calendar.events
   end
 
   def new

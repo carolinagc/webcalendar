@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+
   def index
     @event = Event.new
     events_shown
@@ -20,7 +22,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
   end
 
   def new
@@ -48,14 +49,12 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
     @locations = Location.all
     @organizers = Organizer.all
     @tags = Tag.all
   end
 
   def update
-    @event = Event.find(params[:id])
     if @event.update_attributes(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
@@ -64,7 +63,6 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
     if @event.destroy
       redirect_to events_path
@@ -73,7 +71,11 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(:name, :startdatetime, :duration, :description, :event_type, :location_id, :organizer_id, :tag_ids, :public, :responsible)
+      params.require(:event).permit(:name, :startdatetime, :duration, :description, :event_type, :location_id, :organizer_id, :tag_ids, :public, :responsible, :calendar_id)
+    end
+
+    def set_event
+      @event = Event.find(params[:id])
     end
 
 end

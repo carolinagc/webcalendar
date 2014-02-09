@@ -18,6 +18,13 @@ describe CalendarsController do
       get :show, {:id => calendar.to_param}, valid_session
       assigns(:calendar).should eq(calendar)
     end
+
+    it "assigns the related events as @events" do
+      calendar = Calendar.create! valid_attributes
+      calendar.events = FactoryGirl.build_list(:event, 2, calendar: calendar)
+      get :show, {:id => calendar.to_param}, valid_session
+      assigns(:events).should eq(calendar.events)
+    end
   end
 
   describe "GET new" do
