@@ -1,13 +1,23 @@
 require 'spec_helper'
 
 describe Calendar do
-  before :all do
+  before :each do
     user = FactoryGirl.build(:user)
     @calendar = FactoryGirl.build(:calendar, user: user)
   end
 
   it "should be valid" do
     expect(@calendar).to be_valid
+  end
+
+  it "should be invalid without a user" do
+    @calendar.user = nil
+    expect(@calendar).to be_invalid
+  end
+
+  it "should be invalid without a title" do
+    @calendar.title = nil
+    expect(@calendar).to be_invalid
   end
 
   context "with events" do
