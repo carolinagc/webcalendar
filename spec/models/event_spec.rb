@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Event do
   before :each do
-    @calendar = FactoryGirl.build(:calendar)
-    @event = FactoryGirl.build(:event, calendar: @calendar)
+    @calendar = FactoryGirl.create(:calendar_with_events)
+    @event = @calendar.events.first
   end
 
   it "should have a name" do

@@ -2,8 +2,7 @@ require 'spec_helper'
 
 describe Calendar do
   before :each do
-    user = FactoryGirl.build(:user)
-    @calendar = FactoryGirl.build(:calendar, user: user)
+    @calendar = FactoryGirl.create(:user_with_calendar_with_events).calendars.first
   end
 
   it "should be valid" do
@@ -21,10 +20,6 @@ describe Calendar do
   end
 
   context "with events" do
-    before :each do
-      @events = FactoryGirl.create_list(:event, 2, calendar: @calendar)
-    end
-
     it "should have events" do
       expect(@calendar.events.size).to be(2)
     end
