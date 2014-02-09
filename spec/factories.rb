@@ -22,6 +22,7 @@ FactoryGirl.define do
     password_confirmation "foolalala"
     email "test@example.com"
     confirmed_at Time.now
+    association :current_calendar, factory: :calendar
   end
 
   factory :organizer do
