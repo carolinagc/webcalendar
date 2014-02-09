@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe CalendarsController do
+  # TODO: Convert to expect syntax
   before :each do
     user_sign_in
   end

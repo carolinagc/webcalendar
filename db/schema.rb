@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140209174700) do
+ActiveRecord::Schema.define(version: 20140209200036) do
 
   create_table "calendars", force: true do |t|
     t.string   "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140209174700) do
     t.string   "token"
   end
 
+  add_index "calendars", ["token"], name: "index_calendars_on_token", unique: true
   add_index "calendars", ["user_id"], name: "index_calendars_on_user_id"
 
   create_table "events", force: true do |t|

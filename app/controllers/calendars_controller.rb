@@ -61,7 +61,7 @@ class CalendarsController < ApplicationController
   private
 
     def set_calendar
-      @calendar = Calendar.find(params[:id])
+      @calendar = Calendar.find_by_token(params[:token])
     end
 
     def calendar_params
