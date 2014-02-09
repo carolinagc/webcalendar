@@ -8,7 +8,6 @@ Webcalendar::Application.routes.draw do
     resources :locations
     resources :organizers
     devise_for :users
-    resources :users, only: [:index]
     resources :tags, except: [:show]
   end
 
