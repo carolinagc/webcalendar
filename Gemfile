@@ -26,6 +26,7 @@ group :test, :development do
   gem 'guard-rspec', require: false
   gem "rails-erd"
   gem 'factory_girl'
+  gem 'pry-debugger'
 end
 
 group :test  do
