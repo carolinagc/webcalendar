@@ -6,13 +6,13 @@ de:
     'no': 'nein'
     'yes': 'ja'
     weekdays:
-      friday: Freitag
       monday: Montag
-      saturday: Samstag
-      sunday: Sonntag
-      thursday: Donnerstag
       tuesday: Dienstag
       wednesday: Mittwoch
+      thursday: Donnerstag
+      friday: Freitag
+      saturday: Samstag
+      sunday: Sonntag
   calendar: Kalender
   contact: Kontaktieren Sie uns
   create_event: Neue Veranstaltung

@@ -6,13 +6,13 @@ es:
     'no': 'no'
     'yes': 'sí'
     weekdays:
-      friday: Viernes
       monday: Lunes
-      saturday: Sábado
-      sunday: Domingo
-      thursday: Plácido
       tuesday: Martes
       wednesday: Miércoles
+      thursday: Jueves
+      friday: Viernes
+      saturday: Sábado
+      sunday: Domingo
   calendar: Calendario
   contact: Contacto
   create_event: Crear evento

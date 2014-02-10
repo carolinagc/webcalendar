@@ -6,13 +6,13 @@ en:
     'no': 'no'
     'yes': 'yes'
     weekdays:
-      friday: Friday
       monday: Monday
-      saturday: Saturday
-      sunday: Sunday
-      thursday: Thursday
       tuesday: Tuesday
       wednesday: Wednesday
+      thursday: Thursday
+      friday: Friday
+      saturday: Saturday
+      sunday: Sunday
   calendar: Calendar
   contact: Contact us
   create_event: Create event
