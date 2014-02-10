@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 # Database gems
-gem 'sqlite3'
+
 gem 'pg'
 
 # JS / CSS
