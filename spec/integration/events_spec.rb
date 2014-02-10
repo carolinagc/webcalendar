@@ -17,6 +17,7 @@ feature 'events' do
 
   scenario 'Create a new event' do
     I18n.available_locales.each do |locale|
+      sign_in
       visit events_path
       find("#addIcon").click
       expect(page).to have_content(I18n.translate! :create_event)
@@ -29,6 +30,7 @@ feature 'events' do
       visit events_path
       expect(page).to have_content('lala')
       page.has_xpath?("//*[@id='backIcon']/img")
+      sign_out
     end
   end
   scenario 'Show one event' do
@@ -47,30 +49,36 @@ feature 'events' do
   scenario 'Update an existing event' do
     I18n.available_locales.each do |locale|
       @event = FactoryGirl.create(:event)
+      sign_in
       visit events_path
       visit edit_event_path(id: @event.id)
       fill_in 'event_event_type', with: 'Film'
       click_button I18n.translate! :create_event
       expect(page).to have_content('Film')
+      sign_out
     end
   end
   scenario 'Delete an existing event' do
     I18n.available_locales.each do |locale|
-       @event = FactoryGirl.create(:event, name: "Printing the washing machine", event_type: "Workshop", public: true)
+      @event = FactoryGirl.create(:event, name: "Printing the washing machine", event_type: "Workshop", public: true)
+      sign_in
       visit events_path
 #      require 'pry'; binding.pry
       page.has_xpath?("//*[@id='deleteIcon']/img")
       expect {find("#deleteIcon").click}.to change(Event, :count).by(-1)
       #      expect {click_link(I18n.translate! :delete) }.to change(Event, :count).by(-1)
+      sign_out
     end
   end
   scenario 'Select a location' do
     I18n.available_locales.each do |locale|
       @event = FactoryGirl.create(:event)
       @location = FactoryGirl.create(:location, name: "Betahaus")
+      sign_in
       visit edit_event_path(id: @event.id)
       expect(page).to have_content(I18n.translate! :location)
       find('select', :text => "Betahaus").click
+      sign_out
     end
   end
   scenario 'Monthly calendar view' do
@@ -128,8 +136,9 @@ feature 'events' do
     expect(page).to have_content("Sign out")
     visit events_path
   end
+
   def sign_out
-    visit '/users/sign_out'
+    click_link("Sign out")
     expect(page).to have_content("Sign in")
   end
 
