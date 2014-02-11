@@ -5,6 +5,7 @@ gem 'rails', '4.0.2'
 # Database gems
 
 gem 'pg'
+gem 'sqlite3'
 
 # JS / CSS
 gem 'sass-rails', '~> 4.0.0'
