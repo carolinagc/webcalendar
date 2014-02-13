@@ -1,10 +1,17 @@
 body {
-  background-color: #E4EEF2;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFG;
+    color: #444;
+    font-size: 13px;
+    font-weight: normal;
+}
 
+a {
+    color: #333333;
 }
 
 .menu {
-    background-color: #79A2B3;
+    background-color: #03B8E2;
     text-shadow: 0 0 0;
 }
 
@@ -15,7 +22,6 @@ body {
 
 
 h1{
-    color: #6d9fac;
     font-size: 22px;
     text-align: center;
 }
