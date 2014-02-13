@@ -70,7 +70,7 @@ feature 'location' do
     find(:xpath, '//*[@id="user_password"]').set "foolalala"      
 #    fill_in 'user_email', with: "julia@lala.com"
 #    fill_in 'user_password', with: "foolalala"
-    click_button(I18n.translate! :sign_in)
+    click_button(I18n.translate! 'devise.sessions.new.sign_in')
   end
 
   def sign_out

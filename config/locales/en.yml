@@ -41,8 +41,4 @@ en:
   start_date: Date & Time
   tags: Tags
   week: Week
-  tag: Tag
-  sign_in: Sign in
-  submit: Submit
-  create_account: Create account
-  
+  tag: Tag  
