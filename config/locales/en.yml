@@ -37,6 +37,7 @@ en:
   pending: Pending
   public: Public
   responsible: Person responsible
+  confirm: Confirmed
 #  show: Show
   start_date: Date & Time
   tags: Tags

@@ -1,6 +1,6 @@
-<%= form_for @event, remote: true do |f| %>
+<%= link_to image_tag("icons/back.png"), events_path %>
 
-  <%= link_to image_tag("icons/back.png"), events_path %>
+<%= form_for @event do |f| %>
 
 <div>
   <%= f.label t(:name) %>
@@ -52,6 +52,10 @@
   <%= f.check_box :public %>
 </div>
 
+<div>
+  <%= f.label t(:confirm) %>
+  <%= f.check_box :confirm %>
+</div>
 
 <div>
 
