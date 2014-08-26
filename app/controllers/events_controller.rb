@@ -15,8 +15,10 @@ class EventsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # index.html.erb
+#      format.html # index.html.erb
       format.json { render json: @events }
+
+
     end
 
   end
@@ -32,7 +34,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     respond_to do |format|
-      format.html # index.html.erb
+ #     format.html # index.html.erb
       format.json { render json: @event }
     end
 
@@ -50,14 +52,14 @@ class EventsController < ApplicationController
     if @event.save
       respond_to do |format|
         flash[:notice] = 'Event was successfully created.'
-        format.html {redirect_to @event }
+  #      format.html {redirect_to @event }
         format.json { render json: @event }
       end
     else
       respond_to do |format|
         flash[:error] = 'Something went wrong.'
         format.json { render json: @event.errors, status: :unprocessable_entity }
-        format.html { render "new" }
+   #     format.html { render "new" }
       end
     end
   end
@@ -72,10 +74,10 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update_attributes(event_params)
-      redirect_to @event, notice: 'Event was successfully updated.'
+     # redirect_to @event, notice: 'Event was successfully updated.'
       format.json { head :no_content }
     else
-      render 'edit', notice: "Check mandatory fields."
+    #  render 'edit', notice: "Check mandatory fields."
       format.json { render json: @event.errors, status: :unprocessable_entity }
     end
   end
@@ -84,7 +86,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
     if @event.destroy
-      redirect_to events_path
+      #redirect_to events_path
       format.json { head :no_content }
     end
   end
