@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   def index
     @event = Event.new
     events_shown
+   
   end
 
   def events_shown
@@ -12,6 +13,12 @@ class EventsController < ApplicationController
     else
       @events = Event.where(public:true).order(startdatetime: :desc)
     end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @events }
+    end
+
   end
 
   def calendar
@@ -23,6 +30,12 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @event }
+    end
+
   end
 
   def new
@@ -38,13 +51,13 @@ class EventsController < ApplicationController
       respond_to do |format|
         flash[:notice] = 'Event was successfully created.'
         format.html {redirect_to @event }
-        format.js
+        format.json { render json: @event }
       end
     else
       respond_to do |format|
         flash[:error] = 'Something went wrong.'
+        format.json { render json: @event.errors, status: :unprocessable_entity }
         format.html { render "new" }
-        format.js
       end
     end
   end
@@ -60,8 +73,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     if @event.update_attributes(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
+      format.json { head :no_content }
     else
       render 'edit', notice: "Check mandatory fields."
+      format.json { render json: @event.errors, status: :unprocessable_entity }
     end
   end
 
@@ -70,6 +85,7 @@ class EventsController < ApplicationController
     @event.destroy
     if @event.destroy
       redirect_to events_path
+      format.json { head :no_content }
     end
   end
 
